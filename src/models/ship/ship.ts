@@ -5,9 +5,8 @@ const shipFactory = () => {
     const shipId: number = ++id;
     let hits: string[] = [];
     const getHits = () => hits;
-    const receiveHit = (value: string) => {
-      const hit = coordinates.find((el) => el === value);
-      if (hit) {
+    const receiveHit = (hit: string) => {
+      if (coordinates.includes(hit)) {
         hits = [...hits, hit];
         return hit;
       }
