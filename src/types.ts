@@ -5,4 +5,10 @@ type Ship = {
   receiveHit: (value: string) => string | undefined;
 };
 
+type Board = {
+  boardId: number;
+  getBoard: () => string[][];
+  getMissed: () => string[];
+};
+
 export { Ship };
