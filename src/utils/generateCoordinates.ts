@@ -1,4 +1,4 @@
-const generateCoordinates = (boardSize) => {
+const generateCoordinates = (boardSize: number) => {
   let possibles = [];
   for (let i = 0; i < boardSize; i++) {
     const letter = String.fromCharCode(i + 97);
