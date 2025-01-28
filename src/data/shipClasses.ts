@@ -1,7 +1,4 @@
-type ShipClass = {
-  name: string;
-  size: number;
-};
+import { ShipClass } from "@/types";
 
 const shipClasses: ShipClass[] = [
   { name: "Langskip", size: 5 },
@@ -10,3 +7,5 @@ const shipClasses: ShipClass[] = [
   { name: "Karve", size: 3 },
   { name: "Snekja", size: 2 },
 ];
+
+export default shipClasses;

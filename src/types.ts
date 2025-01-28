@@ -11,4 +11,9 @@ type Board = {
   getMissed: () => string[];
 };
 
-export { Ship };
+type ShipClass = {
+  name: string;
+  size: number;
+};
+
+export { Ship, ShipClass, Board };
