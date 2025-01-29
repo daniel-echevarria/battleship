@@ -3,18 +3,17 @@ import generateCoordinates from "./generateCoordinates";
 type getPossiblePositionsArgs = {
   shipLength: number;
   boardLength: number;
-  vertical: boolean;
+  isVertical: boolean;
 };
 
 const getPossiblePositions = ({
   shipLength,
   boardLength,
-  vertical,
+  isVertical,
 }: getPossiblePositionsArgs) => {
   const maxPosition = boardLength - (shipLength - 1);
-  const xLength = vertical ? boardLength : maxPosition;
-  const yLength = vertical ? maxPosition : boardLength;
-  console.log(xLength, yLength);
+  const xLength = isVertical ? boardLength : maxPosition;
+  const yLength = isVertical ? maxPosition : boardLength;
   return generateCoordinates(xLength, yLength);
 };
 
