@@ -16,7 +16,7 @@ const boardFactory = () => {
       .fill(0)
       .map((x) => Array(size).fill(""));
     let ships: Ship[] = [];
-    let freeCells = generateCoordinates(size, size);
+    let freeCoordinates = generateCoordinates(size, size);
 
     const isStartCoordinateValid = (
       startCoordinate: string,
@@ -28,7 +28,8 @@ const boardFactory = () => {
           shipLength,
           boardLength: size,
           isVertical,
-        }).includes(startCoordinate) && freeCells.includes(startCoordinate)
+        }).includes(startCoordinate) &&
+        freeCoordinates.includes(startCoordinate)
       );
     };
 
@@ -47,7 +48,9 @@ const boardFactory = () => {
       const myShipFactory = shipFactory();
       const shipOne = myShipFactory(shipCoordinates);
       ships.push(shipOne);
-      freeCells = freeCells.filter((x) => !shipCoordinates.includes(x));
+      freeCoordinates = freeCoordinates.filter(
+        (x) => !shipCoordinates.includes(x)
+      );
     };
 
     const getShips = () => ships;
