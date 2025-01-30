@@ -1,6 +1,7 @@
 type Ship = {
   shipId: number;
   getHits: () => string[];
+  getCoordinates: () => string[];
   isDestroyed: () => boolean;
   receiveHit: (value: string) => string | undefined;
 };
