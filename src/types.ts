@@ -6,15 +6,18 @@ type Ship = {
   receiveHit: (value: string) => string | undefined;
 };
 
-type Board = {
+type SetupBoard = {
   boardId: number;
+  getShips: () => Ship[];
   getBoard: () => string[][];
   getMissed: () => string[];
 };
+
+type PlayBoard = {};
 
 type ShipClass = {
   name: string;
   size: number;
 };
 
-export { Ship, ShipClass, Board };
+export { Ship, ShipClass, SetupBoard, PlayBoard };
