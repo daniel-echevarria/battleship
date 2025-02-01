@@ -81,7 +81,7 @@ const setupBoard = () => {
     const getShips = () => ships;
     const getBoardMatrix = () => boardMatrix;
 
-    return { getBoardMatrix, addShip, getShips };
+    return { getBoardMatrix, addShip, getShips, size };
   };
 
   return board;

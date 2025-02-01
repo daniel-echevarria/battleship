@@ -8,6 +8,7 @@ type Ship = {
 
 type SetupBoard = {
   boardId: number;
+  size: number;
   getShips: () => Ship[];
   getBoard: () => string[][];
   getMissed: () => string[];

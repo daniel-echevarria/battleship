@@ -1,5 +1,5 @@
 const generateCoordinates = (xLength: number, yLength: number) => {
-  let possibles = [];
+  let possibles: string[] = [];
   for (let i = 0; i < xLength; i++) {
     const letter = String.fromCharCode(i + 97);
     for (let j = 0; j < yLength; j++) {
