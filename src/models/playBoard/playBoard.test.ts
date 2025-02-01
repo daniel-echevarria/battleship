@@ -10,12 +10,12 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
     mySetupBoardFactory = setupBoard();
     const mySetupBoard = mySetupBoardFactory(10);
     const myShipObj = {
-      shipLength: 3,
+      length: 3,
       startCoordinate: "a1",
       isVertical: true,
     };
     const shipObjTwo = {
-      shipLength: 4,
+      length: 4,
       startCoordinate: "g4",
       isVertical: false,
     };

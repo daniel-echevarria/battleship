@@ -1,11 +1,11 @@
 type GenerateShipCoordinatesArgs = {
-  shipLength: number;
+  length: number;
   startCoordinate: string;
   isVertical: boolean;
 };
 
 const generateShipCoordinates = ({
-  shipLength,
+  length,
   startCoordinate,
   isVertical,
 }: GenerateShipCoordinatesArgs) => {
@@ -14,7 +14,7 @@ const generateShipCoordinates = ({
 
   const generateVertical = () => {
     let coordinates = [];
-    for (let i = 0; i < shipLength; i++) {
+    for (let i = 0; i < length; i++) {
       const formedCoordinate = [letter, num + i].join("");
       coordinates.push(formedCoordinate);
     }
@@ -23,7 +23,7 @@ const generateShipCoordinates = ({
 
   const generateHorizontal = () => {
     let coordinates = [];
-    for (let i = 0; i < shipLength; i++) {
+    for (let i = 0; i < length; i++) {
       const newLetterCharCode = letter.charCodeAt(0) + i;
       const newLetter = String.fromCharCode(newLetterCharCode);
       const formedCoordinate = [newLetter, num].join("");

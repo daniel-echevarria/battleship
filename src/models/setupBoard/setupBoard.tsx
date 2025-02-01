@@ -5,7 +5,7 @@ import generateCoordinates from "@/utils/generateCoordinates";
 import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
 
 type AddShipArgs = {
-  shipLength: number;
+  length: number;
   isVertical: boolean;
   startCoordinate: string;
 };
@@ -19,10 +19,6 @@ const setupBoard = () => {
     const ships: Ship[] = [];
     let freeCoordinates = generateCoordinates(size, size);
 
-    const areAllCoordinatesAvailable = (coordinates: string[]) => {
-      return coordinates.every((c) => freeCoordinates.includes(c));
-    };
-
     const updateFreeCoordinates = (coordinates: string[]) => {
       const forbiddenCoordinates = genNearbyCoordinates(coordinates);
       freeCoordinates = freeCoordinates.filter(
@@ -30,13 +26,17 @@ const setupBoard = () => {
       );
     };
 
+    const areAllCoordinatesAvailable = (coordinates: string[]) => {
+      return coordinates.every((c) => freeCoordinates.includes(c));
+    };
+
     const genValidCoordinates = (
       startCoordinate: string,
-      shipLength: number,
+      length: number,
       isVertical: boolean
     ) => {
       const shipCoordinates = generateShipCoordinates({
-        shipLength,
+        length,
         startCoordinate,
         isVertical,
       });
@@ -46,14 +46,10 @@ const setupBoard = () => {
         : undefined;
     };
 
-    const addShip = ({
-      shipLength,
-      isVertical,
-      startCoordinate,
-    }: AddShipArgs) => {
+    const addShip = ({ length, isVertical, startCoordinate }: AddShipArgs) => {
       const validCoordinates = genValidCoordinates(
         startCoordinate,
-        shipLength,
+        length,
         isVertical
       );
       if (!validCoordinates) return;

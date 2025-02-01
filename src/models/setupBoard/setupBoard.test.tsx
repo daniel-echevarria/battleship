@@ -8,12 +8,12 @@ describe("addShip to a 10x10 board", () => {
     board = myBoardFactory(10);
   });
 
-  describe("when it is called with shipLength 3 the orientation vertical and the startCoordinate is a1", () => {
+  describe("when it is called with length 3 the orientation vertical and the startCoordinate is a1", () => {
     beforeEach(() => {
-      const shipLength = 3;
+      const length = 3;
       const isVertical = true;
       const startCoordinate = "a1";
-      board.addShip({ shipLength, isVertical, startCoordinate });
+      board.addShip({ length, isVertical, startCoordinate });
     });
 
     it("adds a ship to the ships array", () => {
@@ -28,12 +28,12 @@ describe("addShip to a 10x10 board", () => {
     });
   });
 
-  describe("when it's called with shipLength 4, orientation horizontal and a start coordinated of a1", () => {
+  describe("when it's called with length 4, orientation horizontal and a start coordinated of a1", () => {
     beforeEach(() => {
-      const shipLength = 4;
+      const length = 4;
       const isVertical = false;
       const startCoordinate = "a1";
-      board.addShip({ shipLength, isVertical, startCoordinate });
+      board.addShip({ length, isVertical, startCoordinate });
     });
 
     it("adds a ship to the ships array", () => {
@@ -48,12 +48,12 @@ describe("addShip to a 10x10 board", () => {
     });
   });
 
-  describe("when it's called with shipLength 4, orientation horizontal and a start coordinated of h1", () => {
+  describe("when it's called with length 4, orientation horizontal and a start coordinated of h1", () => {
     beforeEach(() => {
-      const shipLength = 4;
+      const length = 4;
       const isVertical = false;
       const startCoordinate = "h1";
-      board.addShip({ shipLength, isVertical, startCoordinate });
+      board.addShip({ length, isVertical, startCoordinate });
     });
 
     it("does not add a ship to the ships array", () => {
@@ -61,12 +61,12 @@ describe("addShip to a 10x10 board", () => {
     });
   });
 
-  describe("when it's called with shipLength 2, orientation vertical and a start coordinated of a10", () => {
+  describe("when it's called with length 2, orientation vertical and a start coordinated of a10", () => {
     beforeEach(() => {
-      const shipLength = 2;
+      const length = 2;
       const isVertical = true;
       const startCoordinate = "a10";
-      board.addShip({ shipLength, isVertical, startCoordinate });
+      board.addShip({ length, isVertical, startCoordinate });
     });
 
     it("does not add a ship to the ships array", () => {
@@ -77,12 +77,12 @@ describe("addShip to a 10x10 board", () => {
   describe("when adding multiple ships", () => {
     beforeEach(() => {
       const firstShip = {
-        shipLength: 3,
+        length: 3,
         isVertical: true,
         startCoordinate: "a1",
       };
       const secondShip = {
-        shipLength: 4,
+        length: 4,
         isVertical: true,
         startCoordinate: "f1",
       };
@@ -98,7 +98,7 @@ describe("addShip to a 10x10 board", () => {
   describe("when adding twice the same ship", () => {
     beforeEach(() => {
       const firstShip = {
-        shipLength: 3,
+        length: 3,
         isVertical: true,
         startCoordinate: "a1",
       };
@@ -114,12 +114,12 @@ describe("addShip to a 10x10 board", () => {
   describe("when adding a ship directly next to another", () => {
     beforeEach(() => {
       const shipOne = {
-        shipLength: 3,
+        length: 3,
         isVertical: true,
         startCoordinate: "a1",
       };
       const shipTwo = {
-        shipLength: 3,
+        length: 3,
         isVertical: true,
         startCoordinate: "b1",
       };
@@ -135,12 +135,12 @@ describe("addShip to a 10x10 board", () => {
   describe("when adding a ship that crosses another", () => {
     beforeEach(() => {
       const shipOne = {
-        shipLength: 4,
+        length: 4,
         isVertical: true,
         startCoordinate: "c1",
       };
       const shipTwo = {
-        shipLength: 4,
+        length: 4,
         isVertical: false,
         startCoordinate: "a2",
       };
