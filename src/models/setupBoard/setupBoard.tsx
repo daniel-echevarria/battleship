@@ -1,7 +1,6 @@
 import { Ship } from "@/types";
 import shipFactory from "../ship/ship";
 import generateShipCoordinates from "@/utils/generateShipCoordinates";
-import getPossiblePositions from "@/utils/getPossiblePositions";
 import generateCoordinates from "@/utils/generateCoordinates";
 import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
 
@@ -20,21 +19,6 @@ const setupBoard = () => {
     const ships: Ship[] = [];
     let freeCoordinates = generateCoordinates(size, size);
 
-    const isStartCoordinateValid = (
-      startCoordinate: string,
-      shipLength: number,
-      isVertical: boolean
-    ) => {
-      return (
-        getPossiblePositions({
-          shipLength,
-          boardLength: size,
-          isVertical,
-        }).includes(startCoordinate) &&
-        freeCoordinates.includes(startCoordinate)
-      );
-    };
-
     const areAllCoordinatesAvailable = (coordinates: string[]) => {
       return coordinates.every((c) => freeCoordinates.includes(c));
     };
@@ -46,20 +30,20 @@ const setupBoard = () => {
       );
     };
 
-    const validateCoordinates = (
+    const genValidCoordinates = (
       startCoordinate: string,
       shipLength: number,
       isVertical: boolean
     ) => {
-      if (!isStartCoordinateValid(startCoordinate, shipLength, isVertical))
-        return;
       const shipCoordinates = generateShipCoordinates({
         shipLength,
         startCoordinate,
         isVertical,
       });
-      if (!areAllCoordinatesAvailable(shipCoordinates)) return;
-      return shipCoordinates;
+
+      return areAllCoordinatesAvailable(shipCoordinates)
+        ? shipCoordinates
+        : undefined;
     };
 
     const addShip = ({
@@ -67,7 +51,7 @@ const setupBoard = () => {
       isVertical,
       startCoordinate,
     }: AddShipArgs) => {
-      const validCoordinates = validateCoordinates(
+      const validCoordinates = genValidCoordinates(
         startCoordinate,
         shipLength,
         isVertical

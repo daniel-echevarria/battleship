@@ -10,23 +10,37 @@ describe("receiveHit", () => {
     shipOne = myShip(coordinates);
   });
 
-  it("Does not add the value if the value isn't present in the coordinates", () => {
-    shipOne.receiveHit("a2");
-    expect(shipOne.getHits().length).toBe(0);
+  describe("when the value is present in the coordinates", () => {
+    it("Adds the value to the hits array", () => {
+      shipOne.receiveHit("a1");
+      expect(shipOne.getHits()).toContain("a1");
+    });
+
+    it("returns the value", () => {
+      expect(shipOne.receiveHit("a1")).toBe("a1");
+    });
   });
 
-  it("Adds the value to the hits array if the value is present in the coordinates", () => {
-    shipOne.receiveHit("a1");
-    expect(shipOne.getHits()).toContain("a1");
+  describe("when the value is not present in the coordinates", () => {
+    it("Does not add the value to the hits array", () => {
+      shipOne.receiveHit("a2");
+      expect(shipOne.getHits().length).toBe(0);
+    });
+
+    it("returns undefined", () => {
+      expect(shipOne.receiveHit("a2")).toBe(undefined);
+    });
   });
 
-  it("Only adds the value present in the coordinates after multiple shots", () => {
-    shipOne.receiveHit("a2"); //missed
-    shipOne.receiveHit("b2"); //missed
-    shipOne.receiveHit("b1"); //hit
-    shipOne.receiveHit("d4"); //missed
-    expect(shipOne.getHits().length).toBe(1);
-    expect(shipOne.getHits()).toContain("b1");
+  describe("when some value are present and some are not", () => {
+    it("adds the present values to the hits array and not the others", () => {
+      shipOne.receiveHit("a2"); //missed
+      shipOne.receiveHit("b2"); //missed
+      shipOne.receiveHit("b1"); //hit
+      shipOne.receiveHit("d4"); //missed
+      expect(shipOne.getHits().length).toBe(1);
+      expect(shipOne.getHits()).toContain("b1");
+    });
   });
 });
 
