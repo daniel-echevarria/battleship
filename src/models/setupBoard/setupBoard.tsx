@@ -11,7 +11,9 @@ type AddShipArgs = {
 };
 
 const setupBoard = () => {
+  let id = 0;
   const board = (size: number) => {
+    const boardId = ++id;
     const boardMatrix = Array(size)
       .fill(0)
       .map((x) => Array(size).fill(""));
@@ -61,7 +63,7 @@ const setupBoard = () => {
     const getShips = () => ships;
     const getBoardMatrix = () => boardMatrix;
 
-    return { getBoardMatrix, addShip, getShips, size };
+    return { getBoardMatrix, addShip, getShips, size, boardId };
   };
 
   return board;
