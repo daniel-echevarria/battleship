@@ -9,20 +9,38 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
   beforeEach(() => {
     mySetupBoardFactory = setupBoard();
     const mySetupBoard = mySetupBoardFactory(10);
-    const myShipObj = {
+    const shipOne = {
       length: 3,
       startCoordinate: "a1",
       isVertical: true,
     };
-    const shipObjTwo = {
+    const shipTwo = {
       length: 4,
       startCoordinate: "g4",
       isVertical: false,
     };
-    mySetupBoard.addShip(myShipObj);
-    mySetupBoard.addShip(shipObjTwo);
+    mySetupBoard.addShip(shipOne);
+    mySetupBoard.addShip(shipTwo);
     myPlayBoardFactory = playBoardFactory(mySetupBoard);
     playBoard = myPlayBoardFactory();
+  });
+
+  describe("areAllShipsDestroyed", () => {
+    it("returns true when all ships are destroyed", () => {
+      const ships = playBoard.getShips();
+      ships.forEach((ship: any) => {
+        vi.spyOn(ship, "isDestroyed").mockReturnValue(true);
+      });
+      expect(playBoard.areAllShipsDestroyed()).toBe(true);
+    });
+
+    it("returns false when at least one ship is not destroyed", () => {
+      const ships = playBoard.getShips();
+      ships.forEach((ship: any, index: number) => {
+        vi.spyOn(ship, "isDestroyed").mockReturnValue(index === 0);
+      });
+      expect(playBoard.areAllShipsDestroyed()).toBe(false);
+    });
   });
 
   describe("receiveHit", () => {
@@ -95,12 +113,17 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
 
     describe("after 5 hits and 4 misses", () => {
       it("returns a set of size 91 not including the hits and misses", () => {
-        const hits = ["a1"];
-        playBoard.receiveHit("a1");
-        playBoard.receiveHit("c4");
-        expect(playBoard.getPossibleAttacks().size).toBe(98);
-        expect(playBoard.getPossibleAttacks().has("a1")).toBe(false);
-        expect(playBoard.getPossibleAttacks().has("c4")).toBe(false);
+        const hits = ["a1", "a2", "a3", "g4", "h4"];
+        const missed = ["b2", "b3", "b4", "b5"];
+        hits.forEach((h) => playBoard.receiveHit(h));
+        missed.forEach((m) => playBoard.receiveHit(m));
+        expect(playBoard.getPossibleAttacks().size).toBe(91);
+        hits.forEach((h) => {
+          expect(playBoard.getPossibleAttacks().has(h)).toBe(false);
+        });
+        missed.forEach((m) => {
+          expect(playBoard.getPossibleAttacks().has(m)).toBe(false);
+        });
       });
     });
   });

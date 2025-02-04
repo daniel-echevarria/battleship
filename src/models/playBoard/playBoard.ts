@@ -15,10 +15,22 @@ const playBoardFactory = (setupBoard: SetupBoard) => {
       possibleAttacks.delete(coordinate);
     };
 
+    const areAllShipsDestroyed = () => {
+      return ships.every((s) => s.isDestroyed());
+    };
+
     const getPossibleAttacks = () => possibleAttacks;
     const getMissed = () => missed;
     const getHits = () => hits;
-    return { receiveHit, getHits, getMissed, getPossibleAttacks };
+    const getShips = () => ships;
+    return {
+      receiveHit,
+      getHits,
+      getMissed,
+      getPossibleAttacks,
+      getShips,
+      areAllShipsDestroyed,
+    };
   };
   return playBoard;
 };
