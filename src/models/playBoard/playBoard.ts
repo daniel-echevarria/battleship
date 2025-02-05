@@ -1,8 +1,8 @@
 import { SetupBoard } from "@/types";
 import generateCoordinates from "@/utils/generateCoordinates";
 
-const playBoardFactory = (setupBoard: SetupBoard) => {
-  const playBoard = () => {
+const playBoardFactory = () => {
+  const playBoard = (setupBoard: SetupBoard) => {
     const ships = setupBoard.getShips();
     let hits: Set<string> = new Set();
     let missed: Set<string> = new Set();

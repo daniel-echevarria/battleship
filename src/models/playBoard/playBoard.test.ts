@@ -21,8 +21,8 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
     };
     mySetupBoard.addShip(shipOne);
     mySetupBoard.addShip(shipTwo);
-    myPlayBoardFactory = playBoardFactory(mySetupBoard);
-    playBoard = myPlayBoardFactory();
+    myPlayBoardFactory = playBoardFactory();
+    playBoard = myPlayBoardFactory(mySetupBoard);
   });
 
   describe("areAllShipsDestroyed", () => {

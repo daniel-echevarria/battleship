@@ -1,28 +1,34 @@
-import { SetupBoard, ShipClass } from "@/types";
+import { PlaceShipArgs, PlayBoard, SetupBoard } from "@/types";
+import playBoardFactory from "../playBoard/playBoard";
 
-type PlaceShipArgs = {
-  shipClass: ShipClass;
-  coordinate: string;
-  isVertical: boolean;
+type PlayerArgs = {
+  setupBoard: SetupBoard;
+  playBoard: PlayBoard;
+  name: string;
 };
+
 const playerFactory = () => {
-  const player = (board: SetupBoard) => {
-    const playerBoard = board;
+  let id = 0;
+  const player = ({ setupBoard, playBoard, name }: PlayerArgs) => {
+    const playerId = ++id;
+    const playerName = name;
+    const strategicBoard = setupBoard;
+    const hasWon = () => {
+      return playBoard.areAllShipsDestroyed();
+    };
     const placeShip = ({
       shipClass,
       coordinate,
       isVertical,
     }: PlaceShipArgs) => {
-      playerBoard.addShip({
+      strategicBoard.addShip({
         length: shipClass.length,
         isVertical,
         startCoordinate: coordinate,
       });
     };
 
-    const getBoard = () => playerBoard;
-
-    return { placeShip, getBoard };
+    return { playerId, placeShip, playerName, hasWon };
   };
   return player;
 };

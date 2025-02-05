@@ -1,3 +1,5 @@
+import { BlobOptions } from "buffer";
+
 type Ship = {
   shipId: number;
   getHits: () => string[];
@@ -20,11 +22,26 @@ type SetupBoard = {
   addShip: ({ length, isVertical, startCoordinate }: AddShipArgs) => void;
 };
 
-type PlayBoard = {};
+type PlayBoard = {
+  areAllShipsDestroyed: () => boolean;
+};
+
+type PlaceShipArgs = {
+  shipClass: ShipClass;
+  coordinate: string;
+  isVertical: boolean;
+};
+
+type Player = {
+  playerId: number;
+  playerName: string;
+  hasWon: () => Boolean;
+  placeShip: ({ shipClass, coordinate, isVertical }: PlaceShipArgs) => void;
+};
 
 type ShipClass = {
   name: string;
   length: number;
 };
 
-export { Ship, ShipClass, SetupBoard, PlayBoard };
+export { Ship, ShipClass, SetupBoard, PlayBoard, Player, PlaceShipArgs };
