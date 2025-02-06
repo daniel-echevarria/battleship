@@ -1,14 +1,14 @@
+import { PlayBoard, SetupBoard } from "@/types";
 import setupBoard from "../setupBoard/setupBoard";
 import playBoardFactory from "./playBoard";
 
 describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [g4, h4, i4, j4]", () => {
-  let myPlayBoardFactory: any;
-  let mySetupBoardFactory: any;
-  let playBoard: any;
+  let playBoard: PlayBoard;
+  let mockSetupBoard: SetupBoard;
 
   beforeEach(() => {
-    mySetupBoardFactory = setupBoard();
-    const mySetupBoard = mySetupBoardFactory(10);
+    const mySetupBoardFactory = setupBoard();
+    mockSetupBoard = mySetupBoardFactory(10);
     const shipOne = {
       length: 3,
       startCoordinate: "a1",
@@ -19,15 +19,15 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
       startCoordinate: "g4",
       isVertical: false,
     };
-    mySetupBoard.addShip(shipOne);
-    mySetupBoard.addShip(shipTwo);
-    myPlayBoardFactory = playBoardFactory();
-    playBoard = myPlayBoardFactory(mySetupBoard);
+    mockSetupBoard.addShip(shipOne);
+    mockSetupBoard.addShip(shipTwo);
+    const myPlayBoardFactory = playBoardFactory();
+    playBoard = myPlayBoardFactory(mockSetupBoard);
   });
 
   describe("areAllShipsDestroyed", () => {
     it("returns true when all ships are destroyed", () => {
-      const ships = playBoard.getShips();
+      const ships = mockSetupBoard.getShips();
       ships.forEach((ship: any) => {
         vi.spyOn(ship, "isDestroyed").mockReturnValue(true);
       });
@@ -35,7 +35,7 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
     });
 
     it("returns false when at least one ship is not destroyed", () => {
-      const ships = playBoard.getShips();
+      const ships = mockSetupBoard.getShips();
       ships.forEach((ship: any, index: number) => {
         vi.spyOn(ship, "isDestroyed").mockReturnValue(index === 0);
       });

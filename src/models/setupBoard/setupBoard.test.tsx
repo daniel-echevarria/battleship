@@ -1,7 +1,8 @@
+import { SetupBoard } from "@/types";
 import boardFactory from "./setupBoard";
 
 describe("addShip to a 10x10 board", () => {
-  let board: any;
+  let board: SetupBoard;
 
   beforeEach(() => {
     const myBoardFactory = boardFactory();

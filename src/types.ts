@@ -1,17 +1,9 @@
-import { BlobOptions } from "buffer";
-
 type Ship = {
   shipId: number;
   getHits: () => string[];
   getCoordinates: () => string[];
   isDestroyed: () => boolean;
   receiveHit: (value: string) => string | undefined;
-};
-
-type AddShipArgs = {
-  length: number;
-  isVertical: boolean;
-  startCoordinate: string;
 };
 
 type SetupBoard = {
@@ -23,13 +15,11 @@ type SetupBoard = {
 };
 
 type PlayBoard = {
+  receiveHit: (arg0: string) => void;
+  getHits: () => Set<string>;
+  getMissed: () => Set<string>;
+  getPossibleAttacks: () => Set<string>;
   areAllShipsDestroyed: () => boolean;
-};
-
-type PlaceShipArgs = {
-  shipClass: ShipClass;
-  coordinate: string;
-  isVertical: boolean;
 };
 
 type Player = {
@@ -39,9 +29,36 @@ type Player = {
   placeShip: ({ shipClass, coordinate, isVertical }: PlaceShipArgs) => void;
 };
 
+type AddShipArgs = {
+  length: number;
+  isVertical: boolean;
+  startCoordinate: string;
+};
+
+type PlaceShipArgs = {
+  shipClass: ShipClass;
+  coordinate: string;
+  isVertical: boolean;
+};
+
+type PlayerArgs = {
+  setupBoard: SetupBoard;
+  playBoard: PlayBoard;
+  name: string;
+};
+
 type ShipClass = {
   name: string;
   length: number;
 };
 
-export { Ship, ShipClass, SetupBoard, PlayBoard, Player, PlaceShipArgs };
+export {
+  Ship,
+  ShipClass,
+  SetupBoard,
+  PlayBoard,
+  Player,
+  PlaceShipArgs,
+  PlayerArgs,
+  AddShipArgs,
+};

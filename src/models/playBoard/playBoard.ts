@@ -22,13 +22,11 @@ const playBoardFactory = () => {
     const getPossibleAttacks = () => possibleAttacks;
     const getMissed = () => missed;
     const getHits = () => hits;
-    const getShips = () => ships;
     return {
       receiveHit,
       getHits,
       getMissed,
       getPossibleAttacks,
-      getShips,
       areAllShipsDestroyed,
     };
   };

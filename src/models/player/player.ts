@@ -1,11 +1,4 @@
-import { PlaceShipArgs, PlayBoard, SetupBoard } from "@/types";
-import playBoardFactory from "../playBoard/playBoard";
-
-type PlayerArgs = {
-  setupBoard: SetupBoard;
-  playBoard: PlayBoard;
-  name: string;
-};
+import { PlaceShipArgs, PlayerArgs } from "@/types";
 
 const playerFactory = () => {
   let id = 0;

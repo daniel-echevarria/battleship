@@ -3,12 +3,7 @@ import shipFactory from "../ship/ship";
 import generateShipCoordinates from "@/utils/generateShipCoordinates";
 import generateCoordinates from "@/utils/generateCoordinates";
 import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
-
-type AddShipArgs = {
-  length: number;
-  isVertical: boolean;
-  startCoordinate: string;
-};
+import { AddShipArgs } from "@/types";
 
 const setupBoard = () => {
   let id = 0;
