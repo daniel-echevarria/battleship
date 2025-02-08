@@ -26,7 +26,30 @@ type Player = {
   playerId: number;
   playerName: string;
   hasWon: () => Boolean;
-  placeShip: ({ shipClass, coordinate, isVertical }: PlaceShipArgs) => void;
+  setupBoard: SetupBoard;
+  placeShip: ({
+    shipClass,
+    coordinate,
+    isVertical,
+  }: PlaceShipArgs) => undefined | Ship;
+};
+
+type requestShipPlacementArgs = {
+  shipClass: ShipClass;
+  player: Player;
+  inputProvider: () => string;
+};
+
+type Game = {
+  currentPlayer: Player;
+  isGameOver: () => boolean;
+  players: Player[];
+  gameLoop: () => void;
+  requestShipPlacement: ({
+    shipClass,
+    player,
+    inputProvider,
+  }: requestShipPlacementArgs) => void;
 };
 
 type AddShipArgs = {
@@ -61,4 +84,6 @@ export {
   PlaceShipArgs,
   PlayerArgs,
   AddShipArgs,
+  Game,
+  requestShipPlacementArgs,
 };

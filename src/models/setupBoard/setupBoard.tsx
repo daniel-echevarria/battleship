@@ -32,12 +32,13 @@ const setupBoard = () => {
       length: number,
       isVertical: boolean
     ) => {
+      if (!freeCoordinates.includes(startCoordinate)) return;
+
       const shipCoordinates = generateShipCoordinates({
         length,
         startCoordinate,
         isVertical,
       });
-
       return areAllCoordinatesAvailable(shipCoordinates)
         ? shipCoordinates
         : undefined;
@@ -53,6 +54,7 @@ const setupBoard = () => {
       const shipOne = myShipFactory(validCoordinates);
       ships.push(shipOne);
       updateFreeCoordinates(validCoordinates);
+      return shipOne;
     };
 
     const getShips = () => ships;

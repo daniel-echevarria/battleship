@@ -5,7 +5,7 @@ const playerFactory = () => {
   const player = ({ setupBoard, playBoard, name }: PlayerArgs) => {
     const playerId = ++id;
     const playerName = name;
-    const strategicBoard = setupBoard;
+    const mySetupBoard = setupBoard;
     const hasWon = () => {
       return playBoard.areAllShipsDestroyed();
     };
@@ -14,14 +14,15 @@ const playerFactory = () => {
       coordinate,
       isVertical,
     }: PlaceShipArgs) => {
-      strategicBoard.addShip({
+      const placedShip = mySetupBoard.addShip({
         length: shipClass.length,
         isVertical,
         startCoordinate: coordinate,
       });
+      return placedShip;
     };
 
-    return { playerId, placeShip, playerName, hasWon };
+    return { playerId, placeShip, playerName, hasWon, setupBoard };
   };
   return player;
 };
