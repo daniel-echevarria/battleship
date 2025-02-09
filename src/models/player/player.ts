@@ -1,28 +1,27 @@
-import { PlaceShipArgs, PlayerArgs } from "@/types";
+import { PlayerArgs } from "@/types";
 
 const playerFactory = () => {
   let id = 0;
   const player = ({ setupBoard, playBoard, name }: PlayerArgs) => {
     const playerId = ++id;
     const playerName = name;
-    const mySetupBoard = setupBoard;
     const hasWon = () => {
       return playBoard.areAllShipsDestroyed();
     };
-    const placeShip = ({
-      shipClass,
-      coordinate,
-      isVertical,
-    }: PlaceShipArgs) => {
-      const placedShip = mySetupBoard.addShip({
-        length: shipClass.length,
-        isVertical,
-        startCoordinate: coordinate,
-      });
-      return placedShip;
-    };
+    // const placeShip = ({
+    //   shipClass,
+    //   coordinate,
+    //   isVertical,
+    // }: PlaceShipArgs) => {
+    //   const placedShip = setupBoard.addShip({
+    //     length: shipClass.length,
+    //     isVertical,
+    //     startCoordinate: coordinate,
+    //   });
+    //   return placedShip;
+    // };
 
-    return { playerId, placeShip, playerName, hasWon, setupBoard };
+    return { playerId, playerName, hasWon, setupBoard };
   };
   return player;
 };

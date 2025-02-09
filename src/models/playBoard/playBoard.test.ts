@@ -9,16 +9,8 @@ describe("playBoard of 10x10 with a ship placed on [a1, a2, a3] and another on [
   beforeEach(() => {
     const mySetupBoardFactory = setupBoard();
     mockSetupBoard = mySetupBoardFactory(10);
-    const shipOne = {
-      length: 3,
-      startCoordinate: "a1",
-      isVertical: true,
-    };
-    const shipTwo = {
-      length: 4,
-      startCoordinate: "g4",
-      isVertical: false,
-    };
+    const shipOne = ["a1", "a2", "a3"];
+    const shipTwo = ["g4", "h4", "i4", "j4"];
     mockSetupBoard.addShip(shipOne);
     mockSetupBoard.addShip(shipTwo);
     const myPlayBoardFactory = playBoardFactory();

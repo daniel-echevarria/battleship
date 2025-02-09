@@ -1,5 +1,5 @@
 import { Player, requestShipPlacementArgs, ShipClass } from "@/types";
-import { sign } from "crypto";
+import generateShipCoordinates from "@/utils/generateShipCoordinates";
 
 const gameFactory = () => {
   const game = (players: Player[], shipClasses: ShipClass[]) => {
@@ -9,29 +9,42 @@ const gameFactory = () => {
       return false;
     };
 
-    const getUserInput = () => {};
-
     const requestShipPlacement = ({
       player,
       shipClass,
-      inputProvider,
+      coordinateProvider,
+      orientationProvider,
     }: requestShipPlacementArgs) => {
       let validInput;
+
       while (!validInput) {
-        const coordinate = inputProvider();
-        const placedShip = player.placeShip({
-          shipClass,
-          isVertical: true,
-          coordinate,
+        const coordinate = coordinateProvider();
+        if (!player.setupBoard.freeCoordinates.includes(coordinate)) continue;
+
+        const isVertical = orientationProvider();
+        const shipCoordinates = generateShipCoordinates({
+          startCoordinate: coordinate,
+          length: shipClass.length,
+          isVertical: isVertical,
         });
+
+        if (!player.setupBoard.areAllCoordinatesAvailable(shipCoordinates))
+          return;
+
+        const placedShip = player.setupBoard.addShip(shipCoordinates);
         validInput = placedShip;
       }
     };
 
-    const shipPlacementLoop = (player: Player, shipClass: ShipClass) => {
-      return shipClass;
+    const placeShips = (
+      player: Player,
+      shipClasses: ShipClass[],
+      coordinateProvider: () => string
+    ) => {
+      shipClasses.forEach((s) => {
+        requestShipPlacement({ player, shipClass: s, coordinateProvider });
+      });
     };
-    const requestPlayerMove = () => {};
 
     const gameLoop = () => {};
 
@@ -41,6 +54,7 @@ const gameFactory = () => {
       players,
       requestShipPlacement,
       gameLoop,
+      placeShips,
     };
   };
 

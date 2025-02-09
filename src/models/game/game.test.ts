@@ -46,41 +46,131 @@ describe("Game", () => {
   });
 
   describe("requestShipPlacement", () => {
-    describe("when the user inputs a valid coordinate", () => {
-      it.only("adds a ship to the players setupBoard", () => {
-        const player = player1;
-        const shipClass = shipClasses[0];
+    let mockCoordinateProvider: any;
+    let mockOrientationProvider: any;
+    let player: any;
+    let shipClass: any;
 
-        const mockInputProvider = vi
-          .fn()
-          .mockReturnValueOnce("z9")
-          .mockReturnValueOnce("a1");
+    describe("when placing a ship of length 3 vertically ", () => {
+      beforeEach(() => {
+        player = player1;
+        shipClass = { name: "bla", length: 3 };
+        mockOrientationProvider = vi.fn().mockReturnValue(true);
+      });
 
-        game.requestShipPlacement({
-          shipClass,
-          player,
-          inputProvider: mockInputProvider,
+      describe("when the user first inputs z9 and then a1 ", () => {
+        beforeEach(() => {
+          mockCoordinateProvider = vi
+            .fn()
+            .mockReturnValueOnce("z9")
+            .mockReturnValueOnce("a1");
+
+          game.requestShipPlacement({
+            shipClass,
+            player,
+            coordinateProvider: mockCoordinateProvider,
+            orientationProvider: mockOrientationProvider,
+          });
         });
 
-        expect(mockInputProvider).toHaveBeenCalledTimes(2);
-        expect(player.setupBoard.getShips().length).toBe(1);
+        it("calls the input provider twice", () => {
+          expect(mockCoordinateProvider).toHaveBeenCalledTimes(2);
+        });
+
+        it("adds exactly one ship to the player setup board", () => {
+          expect(player.setupBoard.getShips().length).toBe(1);
+        });
+
+        it("adds a ship with coordinates a1 a2 a3", () => {
+          const ship = player.setupBoard.getShips()[0];
+          expect(ship.getCoordinates()).toEqual(["a1", "a2", "a3"]);
+        });
       });
     });
 
-    describe("when the coordinate is not part of the possibleCoordinates", () => {
-      it("returns undefined");
+    describe("when placing a ship of length 4 horizontaly", () => {
+      beforeEach(() => {
+        player = player1;
+        shipClass = { name: "bla", length: 4 };
+        mockOrientationProvider = vi.fn().mockReturnValue(false);
+      });
+
+      describe("when the user inputs h1", () => {
+        beforeEach(() => {
+          mockCoordinateProvider = vi.fn().mockReturnValueOnce("h1");
+
+          game.requestShipPlacement({
+            shipClass,
+            player,
+            coordinateProvider: mockCoordinateProvider,
+            orientationProvider: mockOrientationProvider,
+          });
+        });
+
+        it("does not add a ship to the ships array", () => {
+          expect(player.setupBoard.getShips()).toHaveLength(0);
+        });
+      });
+    });
+
+    describe("when placing a ship of length 2 vertically", () => {
+      beforeEach(() => {
+        player = player1;
+        shipClass = { name: "bla", length: 2 };
+        mockOrientationProvider = vi.fn().mockReturnValue(true);
+      });
+
+      describe("when the user inputs a10", () => {
+        beforeEach(() => {
+          mockCoordinateProvider = vi.fn().mockReturnValueOnce("a10");
+
+          game.requestShipPlacement({
+            shipClass,
+            player,
+            coordinateProvider: mockCoordinateProvider,
+            orientationProvider: mockOrientationProvider,
+          });
+        });
+
+        it("does not add a ship to the ships array", () => {
+          expect(player.setupBoard.getShips()).toHaveLength(0);
+        });
+      });
+    });
+
+    describe("when placing two ship of length 3 vertically", () => {
+      beforeEach(() => {
+        player = player1;
+        shipClass = { name: "bla", length: 3 };
+        mockOrientationProvider = vi.fn().mockReturnValue(true);
+      });
+
+      describe("when the user inputs a1 and f6", () => {
+        beforeEach(() => {
+          mockCoordinateProvider = vi
+            .fn()
+            .mockReturnValueOnce("a1")
+            .mockReturnValueOnce("f6");
+
+          game.requestShipPlacement({
+            shipClass,
+            player,
+            coordinateProvider: mockCoordinateProvider,
+            orientationProvider: mockOrientationProvider,
+          });
+
+          game.requestShipPlacement({
+            shipClass,
+            player,
+            coordinateProvider: mockCoordinateProvider,
+            orientationProvider: mockOrientationProvider,
+          });
+        });
+
+        it("adds both ships", () => {
+          expect(player.setupBoard.getShips()).toHaveLength(2);
+        });
+      });
     });
   });
-
-  // describe("requestShipPlacement", () => {
-  //   it("request players to place all their ships", () => {
-  //     const numShipsToPlace = shipClasses.length;
-  //     const numPlayers = game.players.length;
-  //     const requestShipPlacementMock = vi.spyOn(game, "requestShipsPlacement");
-  //     game.gameLoop();
-  //     expect(requestShipPlacementMock).toHaveBeenCalledTimes(
-  //       numShipsToPlace * numPlayers
-  //     );
-  //   });
-  // });
 });

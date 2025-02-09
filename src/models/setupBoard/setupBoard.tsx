@@ -1,66 +1,50 @@
 import { Ship } from "@/types";
 import shipFactory from "../ship/ship";
-import generateShipCoordinates from "@/utils/generateShipCoordinates";
 import generateCoordinates from "@/utils/generateCoordinates";
 import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
-import { AddShipArgs } from "@/types";
 
 const setupBoard = () => {
   let id = 0;
   const board = (size: number) => {
+    let freeCoordinates = generateCoordinates(size, size);
     const boardId = ++id;
+    const myShipFactory = shipFactory();
+    const ships: Ship[] = [];
     const boardMatrix = Array(size)
       .fill(0)
       .map((x) => Array(size).fill(""));
-    const myShipFactory = shipFactory();
-    const ships: Ship[] = [];
-    let freeCoordinates = generateCoordinates(size, size);
 
-    const updateFreeCoordinates = (coordinates: string[]) => {
+    const areAllCoordinatesAvailable = (coordinates: string[]) => {
+      return coordinates.every((c) => freeCoordinates.includes(c));
+    };
+
+    const addShip = (coordinates: string[]) => {
+      const shipOne = myShipFactory(coordinates);
+      ships.push(shipOne);
+      removeOccupiedCoordinates(coordinates);
+      return shipOne;
+    };
+
+    // Removes ship's coordinates and the nearby coordinates from the freeCoordinates array
+    const removeOccupiedCoordinates = (coordinates: string[]) => {
       const forbiddenCoordinates = genNearbyCoordinates(coordinates);
       freeCoordinates = freeCoordinates.filter(
         (c) => !forbiddenCoordinates.includes(c)
       );
     };
 
-    const areAllCoordinatesAvailable = (coordinates: string[]) => {
-      return coordinates.every((c) => freeCoordinates.includes(c));
-    };
-
-    const genValidCoordinates = (
-      startCoordinate: string,
-      length: number,
-      isVertical: boolean
-    ) => {
-      if (!freeCoordinates.includes(startCoordinate)) return;
-
-      const shipCoordinates = generateShipCoordinates({
-        length,
-        startCoordinate,
-        isVertical,
-      });
-      return areAllCoordinatesAvailable(shipCoordinates)
-        ? shipCoordinates
-        : undefined;
-    };
-
-    const addShip = ({ length, isVertical, startCoordinate }: AddShipArgs) => {
-      const validCoordinates = genValidCoordinates(
-        startCoordinate,
-        length,
-        isVertical
-      );
-      if (!validCoordinates) return;
-      const shipOne = myShipFactory(validCoordinates);
-      ships.push(shipOne);
-      updateFreeCoordinates(validCoordinates);
-      return shipOne;
-    };
-
     const getShips = () => ships;
     const getBoardMatrix = () => boardMatrix;
 
-    return { getBoardMatrix, addShip, getShips, size, boardId };
+    return {
+      getBoardMatrix,
+      addShip,
+      getShips,
+      size,
+      boardId,
+      freeCoordinates,
+      areAllCoordinatesAvailable,
+    };
   };
 
   return board;

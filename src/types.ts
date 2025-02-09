@@ -9,9 +9,11 @@ type Ship = {
 type SetupBoard = {
   boardId: number;
   size: number;
+  freeCoordinates: string[];
+  areAllCoordinatesAvailable: (arg0: string[]) => boolean;
   getShips: () => Ship[];
   getBoardMatrix: () => string[][];
-  addShip: ({ length, isVertical, startCoordinate }: AddShipArgs) => void;
+  addShip: (arg0: string[]) => Ship;
 };
 
 type PlayBoard = {
@@ -27,17 +29,13 @@ type Player = {
   playerName: string;
   hasWon: () => Boolean;
   setupBoard: SetupBoard;
-  placeShip: ({
-    shipClass,
-    coordinate,
-    isVertical,
-  }: PlaceShipArgs) => undefined | Ship;
 };
 
 type requestShipPlacementArgs = {
   shipClass: ShipClass;
   player: Player;
-  inputProvider: () => string;
+  coordinateProvider: () => string;
+  orientationProvider: () => boolean;
 };
 
 type Game = {
@@ -48,7 +46,8 @@ type Game = {
   requestShipPlacement: ({
     shipClass,
     player,
-    inputProvider,
+    coordinateProvider,
+    orientationProvider,
   }: requestShipPlacementArgs) => void;
 };
 
