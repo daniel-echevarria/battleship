@@ -40,15 +40,8 @@ type requestShipPlacementArgs = {
 
 type Game = {
   currentPlayer: Player;
-  isGameOver: () => boolean;
   players: Player[];
-  gameLoop: () => void;
-  requestShipPlacement: ({
-    shipClass,
-    player,
-    coordinateProvider,
-    orientationProvider,
-  }: requestShipPlacementArgs) => void;
+  isGameOver: () => boolean;
 };
 
 type AddShipArgs = {
