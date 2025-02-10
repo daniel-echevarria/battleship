@@ -3,7 +3,7 @@ type Ship = {
   getHits: () => string[];
   getCoordinates: () => string[];
   isDestroyed: () => boolean;
-  receiveHit: (value: string) => string | undefined;
+  receiveHit: (value: string) => string | false;
 };
 
 type SetupBoard = {
@@ -38,10 +38,19 @@ type requestShipPlacementArgs = {
   orientationProvider: () => boolean;
 };
 
+type GetUserCoordinateParams = {
+  inputProvider: () => Promise<string>;
+  availableCoordinates: string[];
+};
+
 type Game = {
   currentPlayer: Player;
   players: Player[];
   isGameOver: () => boolean;
+  getUserCoordinate: ({
+    inputProvider,
+    availableCoordinates,
+  }: GetUserCoordinateParams) => string | false;
 };
 
 type AddShipArgs = {

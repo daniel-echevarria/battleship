@@ -3,9 +3,10 @@ import shipFactory from "../ship/ship";
 import generateCoordinates from "@/utils/generateCoordinates";
 import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
 
-const setupBoard = () => {
+const setupBoardFactory = () => {
   let id = 0;
-  const board = (size: number) => {
+
+  const setupBoard = (size: number) => {
     let freeCoordinates = generateCoordinates(size, size);
     const boardId = ++id;
     const myShipFactory = shipFactory();
@@ -47,7 +48,7 @@ const setupBoard = () => {
     };
   };
 
-  return board;
+  return setupBoard;
 };
 
-export default setupBoard;
+export default setupBoardFactory;
