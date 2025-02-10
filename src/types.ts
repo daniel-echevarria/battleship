@@ -38,9 +38,9 @@ type requestShipPlacementArgs = {
   orientationProvider: () => boolean;
 };
 
-type GetUserCoordinateParams = {
+type GetValidUserCoordinateParams = {
   inputProvider: () => Promise<string>;
-  availableCoordinates: string[];
+  validCoordinates: string[];
 };
 
 type Game = {
@@ -87,4 +87,5 @@ export {
   AddShipArgs,
   Game,
   requestShipPlacementArgs,
+  GetValidUserCoordinateParams,
 };
