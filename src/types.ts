@@ -6,6 +6,8 @@ type Ship = {
   receiveHit: (value: string) => string | false;
 };
 
+type InputProvider = () => Promise<string>;
+
 type SetupBoard = {
   boardId: number;
   size: number;
@@ -18,7 +20,7 @@ type SetupBoard = {
     shipClass,
     isVertical,
     coordinate,
-  }: CanShipGoThereParams) => boolean;
+  }: CanShipGoThereArgs) => boolean;
 };
 
 type PlayBoard = {
@@ -32,8 +34,15 @@ type PlayBoard = {
 type Player = {
   playerId: number;
   playerName: string;
-  hasWon: () => Boolean;
   setupBoard: SetupBoard;
+  hasWon: () => Boolean;
+  placeShip: ({ shipClass, isVertical, inputProvider }: PlaceShipArgs) => void;
+};
+
+type PlaceShipArgs = {
+  shipClass: ShipClass;
+  isVertical: boolean;
+  inputProvider: InputProvider;
 };
 
 type requestShipPlacementArgs = {
@@ -43,8 +52,8 @@ type requestShipPlacementArgs = {
   orientationProvider: () => boolean;
 };
 
-type GetValidUserCoordinateParams = {
-  inputProvider: () => Promise<string>;
+type GetValidUserCoordinateArgs = {
+  inputProvider: InputProvider;
   validCoordinates: string[];
 };
 
@@ -52,10 +61,6 @@ type Game = {
   currentPlayer: Player;
   players: Player[];
   isGameOver: () => boolean;
-  getUserCoordinate: ({
-    inputProvider,
-    validCoordinates,
-  }: GetValidUserCoordinateParams) => string | false;
 };
 
 type AddShipArgs = {
@@ -64,22 +69,16 @@ type AddShipArgs = {
   startCoordinate: string;
 };
 
-type PlaceShipArgs = {
-  shipClass: ShipClass;
-  coordinate: string;
-  isVertical: boolean;
-};
-
 type PlayerArgs = {
   setupBoard: SetupBoard;
   playBoard: PlayBoard;
   name: string;
 };
 
-type CanShipGoThereParams = {
+type CanShipGoThereArgs = {
   shipClass: ShipClass;
   isVertical: boolean;
-  coordinate: string;
+  coordinate: string | undefined;
 };
 
 type ShipClass = {
@@ -98,6 +97,6 @@ export {
   AddShipArgs,
   Game,
   requestShipPlacementArgs,
-  GetValidUserCoordinateParams,
-  CanShipGoThereParams,
+  GetValidUserCoordinateArgs as GetValidUserCoordinateParams,
+  CanShipGoThereArgs as CanShipGoThereParams,
 };

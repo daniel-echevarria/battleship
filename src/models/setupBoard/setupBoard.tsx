@@ -25,6 +25,8 @@ const setupBoardFactory = () => {
       isVertical,
       coordinate,
     }: CanShipGoThereParams) => {
+      if (!coordinate) return;
+
       const shipCoordinates = generateShipCoordinates({
         length: shipClass.length,
         isVertical,

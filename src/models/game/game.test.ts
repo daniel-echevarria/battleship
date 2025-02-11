@@ -1,30 +1,16 @@
-import { Game } from "@/types";
+import { Game, ShipClass } from "@/types";
 import gameFactory from "./game";
 import playerFactory from "../player/player";
 import setupBoardFactory from "../setupBoard/setupBoard";
 import playBoardFactory from "../playBoard/playBoard";
 import shipClasses from "@/data/shipClasses";
-import { Mock } from "vitest";
+import * as getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 
 describe("game", () => {
   let game: Game;
 
-  describe("getUserCoordinate", () => {
-    let mockUserInput: Mock;
-    const availableCoordinates = ["a1", "b1", "c1", "d1"];
-
-    beforeEach(() => {
-      mockUserInput = vi.fn();
-      game = setupGame();
-    });
-
-    describe("when the users inputs an available coordinate", () => {
-      it("returns the input coordinate", () => {
-        mockUserInput.mockReturnValue("a1");
-        const params = { inputProvider: mockUserInput, availableCoordinates };
-        expect(true).toBe(true);
-      });
-    });
+  beforeEach(() => {
+    game = setupGame();
   });
 });
 
