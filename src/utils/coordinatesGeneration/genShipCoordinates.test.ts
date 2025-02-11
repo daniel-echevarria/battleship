@@ -1,4 +1,4 @@
-import generateShipCoordinates from "./generateShipCoordinates";
+import generateShipCoordinates from "./genShipCoordinates";
 
 describe("generateShipCoordinates", () => {
   describe("when ship length is 2, orientation vertical  and startCoordinates is a1", () => {

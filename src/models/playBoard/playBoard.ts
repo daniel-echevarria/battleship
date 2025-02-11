@@ -1,6 +1,6 @@
 import { Ship } from "@/types";
 import { SetupBoard } from "@/boardTypes";
-import generateCoordinates from "@/utils/generateBoardCoordinates";
+import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinates";
 
 const playBoardFactory = () => {
   const playBoard = (setupBoard: SetupBoard) => {
@@ -8,7 +8,7 @@ const playBoardFactory = () => {
     let hits: Set<string> = new Set();
     let missed: Set<string> = new Set();
     let possibleAttacks: Set<string> = new Set(
-      generateCoordinates(setupBoard.size, setupBoard.size)
+      genBoardCoordinates(setupBoard.size, setupBoard.size)
     );
     const receiveHit = (coordinate: string) => {
       const hitShip = ships.find((s: Ship) => s.receiveHit(coordinate));

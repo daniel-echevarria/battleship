@@ -1,3 +1,4 @@
+// Generate the nearby coordinates in order to remove them from the free coordinates of the board
 const genNearbyCoordinates = (coordinates: string[]) => {
   const nearby: string[][] = [];
   coordinates.forEach((c) => {

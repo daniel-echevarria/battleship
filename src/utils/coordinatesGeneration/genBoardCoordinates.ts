@@ -1,4 +1,4 @@
-const generateCoordinates = (xLength: number, yLength: number) => {
+const genBoardCoordinates = (xLength: number, yLength: number) => {
   let possibles: string[] = [];
   for (let i = 0; i < xLength; i++) {
     const letter = String.fromCharCode(i + 97);
@@ -11,4 +11,4 @@ const generateCoordinates = (xLength: number, yLength: number) => {
   return possibles;
 };
 
-export default generateCoordinates;
+export default genBoardCoordinates;

@@ -1,4 +1,4 @@
-import generateCoordinates from "./generateBoardCoordinates";
+import generateCoordinates from "./genBoardCoordinates";
 
 describe("generateCoordinates", () => {
   describe("when passed a xLength of 2 and an yLength of 2", () => {

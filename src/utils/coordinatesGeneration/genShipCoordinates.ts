@@ -1,14 +1,14 @@
-type GenerateShipCoordinatesArgs = {
+type GenShipCoordinatesArgs = {
   length: number;
   startCoordinate: string;
   isVertical: boolean;
 };
 
-const generateShipCoordinates = ({
+const genShipCoordinates = ({
   length,
   startCoordinate,
   isVertical,
-}: GenerateShipCoordinatesArgs) => {
+}: GenShipCoordinatesArgs) => {
   const letter = startCoordinate[0];
   const num = Number(startCoordinate.slice(1));
 
@@ -35,4 +35,4 @@ const generateShipCoordinates = ({
   return isVertical ? generateVertical() : generateHorizontal();
 };
 
-export default generateShipCoordinates;
+export default genShipCoordinates;

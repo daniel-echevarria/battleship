@@ -1,7 +1,7 @@
 import shipFactory from "../ship/ship";
-import generateCoordinates from "@/utils/generateBoardCoordinates";
-import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
-import generateShipCoordinates from "@/utils/generateShipCoordinates";
+import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinates";
+import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
+import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
 import { Ship } from "@/types";
 import { CanShipGoThereArgs } from "@/boardTypes";
 
@@ -9,7 +9,7 @@ const setupBoardFactory = () => {
   let id = 0;
 
   const setupBoard = (size: number) => {
-    let freeCoordinates = generateCoordinates(size, size);
+    let freeCoordinates = genBoardCoordinates(size, size);
     const boardId = ++id;
     const myShipFactory = shipFactory();
     const ships: Ship[] = [];
@@ -28,7 +28,7 @@ const setupBoardFactory = () => {
     }: CanShipGoThereArgs) => {
       if (!coordinate) return false;
 
-      const shipCoordinates = generateShipCoordinates({
+      const shipCoordinates = genShipCoordinates({
         length: shipClass.length,
         isVertical,
         startCoordinate: coordinate,

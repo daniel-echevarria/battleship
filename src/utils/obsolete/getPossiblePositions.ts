@@ -1,4 +1,4 @@
-import generateCoordinates from "./generateBoardCoordinates";
+import genBoardCoordinates from "./coordinatesGeneration/genBoardCoordinates";
 
 type getPossiblePositionsArgs = {
   shipLength: number;
@@ -14,7 +14,7 @@ const getPossiblePositions = ({
   const maxPosition = boardLength - (shipLength - 1);
   const xLength = isVertical ? boardLength : maxPosition;
   const yLength = isVertical ? maxPosition : boardLength;
-  return generateCoordinates(xLength, yLength);
+  return genBoardCoordinates(xLength, yLength);
 };
 
 export default getPossiblePositions;

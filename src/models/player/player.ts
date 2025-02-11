@@ -1,6 +1,6 @@
 import { ShipClass } from "@/types";
 import { PlaceShipArgs, PlayerArgs } from "@/playerTypes";
-import generateShipCoordinates from "@/utils/generateShipCoordinates";
+import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 
 const playerFactory = () => {
@@ -20,7 +20,7 @@ const playerFactory = () => {
       if (!setupBoard.canShipGoThere({ shipClass, isVertical, coordinate }))
         return;
 
-      const shipCoordinates = generateShipCoordinates({
+      const shipCoordinates = genShipCoordinates({
         length: shipClass.length,
         isVertical,
         startCoordinate: coordinate,
