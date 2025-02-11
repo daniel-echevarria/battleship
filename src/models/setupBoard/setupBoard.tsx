@@ -1,8 +1,9 @@
-import { CanShipGoThereParams, Ship, ShipClass } from "@/types";
 import shipFactory from "../ship/ship";
 import generateCoordinates from "@/utils/generateBoardCoordinates";
 import genNearbyCoordinates from "@/utils/genNearbyCoordinates";
 import generateShipCoordinates from "@/utils/generateShipCoordinates";
+import { Ship } from "@/types";
+import { CanShipGoThereArgs } from "@/boardTypes";
 
 const setupBoardFactory = () => {
   let id = 0;
@@ -24,8 +25,8 @@ const setupBoardFactory = () => {
       shipClass,
       isVertical,
       coordinate,
-    }: CanShipGoThereParams) => {
-      if (!coordinate) return;
+    }: CanShipGoThereArgs) => {
+      if (!coordinate) return false;
 
       const shipCoordinates = generateShipCoordinates({
         length: shipClass.length,

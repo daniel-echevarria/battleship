@@ -1,6 +1,5 @@
-import { SetupBoard, ShipClass } from "@/types";
+import { SetupBoard } from "@/boardTypes";
 import setupBoardFactory from "./setupBoard";
-import exp from "constants";
 
 describe("setupBoard", () => {
   let board: SetupBoard;

@@ -1,8 +1,11 @@
-import { PlayBoard, Player, SetupBoard, ShipClass } from "@/types";
+import { PlayBoard, SetupBoard } from "@/boardTypes";
+import { Player } from "@/playerTypes";
+import { ShipClass } from "@/types";
 import playerFactory from "./player";
 import setupBoard from "../setupBoard/setupBoard";
 import playBoardFactory from "../playBoard/playBoard";
 import * as getValidUserCoordinate from "@/utils/getValidUserCoordinate";
+import shipClasses from "@/data/shipClasses";
 
 describe("Player", () => {
   let player: Player;
@@ -20,6 +23,7 @@ describe("Player", () => {
       playBoard: playBoardOne,
       setupBoard: setupBoardOne,
       name: myName,
+      ships: shipClasses,
     });
   });
 
@@ -101,49 +105,4 @@ describe("Player", () => {
       expect(player.setupBoard.getShips()).toHaveLength(0);
     });
   });
-
-  // describe("placeShip", () => {
-  //   let shipClass: ShipClass;
-
-  //   beforeEach(() => {
-  //     shipClass = { name: "Drakkar", length: 4 };
-  //   });
-
-  //   describe("when placing a Drakkar shipClass (length 4) into an empty 10x10 board", () => {
-  //     it("should call addShip with the correct arguments", () => {
-  //       const coordinate = "a1";
-  //       const isVertical = true;
-  //       const addShipSpy = vi.spyOn(setupBoardOne, "addShip");
-  //       player.placeShip({ shipClass, coordinate, isVertical });
-  //       expect(addShipSpy).toHaveBeenCalledWith({
-  //         length: shipClass.length,
-  //         isVertical,
-  //         startCoordinate: coordinate,
-  //       });
-  //     });
-
-  //     describe("when called placed on a1 vertically", () => {
-  //       beforeEach(() => {
-  //         const coordinate = "a1";
-  //         const isVertical = true;
-  //         player.placeShip({ shipClass, coordinate, isVertical });
-  //       });
-
-  //       it("adds a ship to the player's board", () => {
-  //         expect(setupBoardOne.getShips()).toHaveLength(1);
-  //       });
-
-  //       it("adds a ship of length 4 to the player's board", () => {
-  //         const playerShips = setupBoardOne.getShips();
-  //         expect(playerShips[0].getCoordinates()).toHaveLength(4);
-  //       });
-
-  //       it("adds a ship which coordinates are a1 a2 a3 a4", () => {
-  //         const ship = setupBoardOne.getShips()[0];
-  //         const result = ["a1", "a2", "a3", "a4"];
-  //         expect(ship.getCoordinates()).toEqual(result);
-  //       });
-  //     });
-  //   });
-  // });
 });

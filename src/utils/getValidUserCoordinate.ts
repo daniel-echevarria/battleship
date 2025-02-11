@@ -1,9 +1,9 @@
-import { GetValidUserCoordinateParams } from "@/types";
+import { GetValidUserCoordinateArgs } from "@/playerTypes";
 
 const getValidUserCoordinate = async ({
   inputProvider,
   validCoordinates,
-}: GetValidUserCoordinateParams) => {
+}: GetValidUserCoordinateArgs) => {
   const userInput = await inputProvider();
   const validCoordinate = validCoordinates.find((coo) => coo === userInput);
   return validCoordinate;

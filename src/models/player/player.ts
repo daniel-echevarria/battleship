@@ -1,4 +1,5 @@
-import { PlaceShipArgs, PlayerArgs, Ship, ShipClass } from "@/types";
+import { ShipClass } from "@/types";
+import { PlaceShipArgs, PlayerArgs } from "@/playerTypes";
 import generateShipCoordinates from "@/utils/generateShipCoordinates";
 import getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 
@@ -47,6 +48,7 @@ const playerFactory = () => {
 
       if (validCoordinates) setupBoard.addShip(validCoordinates);
     };
+
     return { playerId, playerName, hasWon, setupBoard, placeShip };
   };
   return player;
