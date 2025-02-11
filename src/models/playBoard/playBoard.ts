@@ -1,5 +1,5 @@
 import { SetupBoard } from "@/types";
-import generateCoordinates from "@/utils/generateCoordinates";
+import generateCoordinates from "@/utils/generateBoardCoordinates";
 
 const playBoardFactory = () => {
   const playBoard = (setupBoard: SetupBoard) => {

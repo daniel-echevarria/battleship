@@ -10,10 +10,15 @@ type SetupBoard = {
   boardId: number;
   size: number;
   freeCoordinates: string[];
-  areAllCoordinatesAvailable: (arg0: string[]) => boolean;
   getShips: () => Ship[];
   getBoardMatrix: () => string[][];
   addShip: (arg0: string[]) => Ship;
+  areAllCoordinatesAvailable: (arg0: string[]) => boolean;
+  canShipGoThere: ({
+    shipClass,
+    isVertical,
+    coordinate,
+  }: CanShipGoThereParams) => boolean;
 };
 
 type PlayBoard = {
@@ -49,8 +54,8 @@ type Game = {
   isGameOver: () => boolean;
   getUserCoordinate: ({
     inputProvider,
-    availableCoordinates,
-  }: GetUserCoordinateParams) => string | false;
+    validCoordinates,
+  }: GetValidUserCoordinateParams) => string | false;
 };
 
 type AddShipArgs = {
@@ -71,6 +76,12 @@ type PlayerArgs = {
   name: string;
 };
 
+type CanShipGoThereParams = {
+  shipClass: ShipClass;
+  isVertical: boolean;
+  coordinate: string;
+};
+
 type ShipClass = {
   name: string;
   length: number;
@@ -88,4 +99,5 @@ export {
   Game,
   requestShipPlacementArgs,
   GetValidUserCoordinateParams,
+  CanShipGoThereParams,
 };

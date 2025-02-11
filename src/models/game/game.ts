@@ -11,12 +11,7 @@ const gameFactory = ({ players, shipClasses }: GameArgs) => {
     return false;
   };
 
-  const getUserCoordinate = () => {
-    return "a1";
-  };
-
   return {
-    getUserCoordinate,
     currentPlayer,
     isGameOver,
     players,
