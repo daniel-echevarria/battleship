@@ -1,4 +1,4 @@
-import genBoardCoordinates from "./coordinatesGeneration/genBoardCoordinates";
+import genBoardCoordinates from "../coordinatesGeneration/genBoardCoordinates";
 
 type getPossiblePositionsArgs = {
   shipLength: number;
