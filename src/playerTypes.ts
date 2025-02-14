@@ -5,7 +5,9 @@ type Player = {
   playerId: number;
   playerName: string;
   setupBoard: SetupBoard;
-  hasWon: () => Boolean;
+  isHuman: boolean;
+  hasWon: () => boolean;
+  randomlyPlaceShips: () => void;
   placeShip: ({ shipClass, isVertical, inputProvider }: PlaceShipArgs) => void;
 };
 
@@ -14,6 +16,7 @@ type PlayerArgs = {
   playBoard: PlayBoard;
   ships: ShipClass[];
   name: string;
+  isHuman: boolean;
 };
 
 type GetValidUserCoordinateArgs = {

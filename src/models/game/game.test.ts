@@ -33,11 +33,15 @@ const setupGame = () => {
     name: "Joe",
     setupBoard: setupBoardOne,
     playBoard: playBoardOne,
+    ships: shipClasses,
+    isHuman: true,
   });
   const player2 = createPlayer({
     name: "Blake",
     setupBoard: setupBoardTwo,
     playBoard: playBoardTwo,
+    ships: shipClasses,
+    isHuman: false,
   });
 
   // create the game with the 2 players and the shipsClasses

@@ -1,11 +1,18 @@
-import { ShipClass } from "@/types";
+import { Ship, ShipClass } from "@/types";
 import { PlaceShipArgs, PlayerArgs } from "@/playerTypes";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import getValidUserCoordinate from "@/utils/getValidUserCoordinate";
+import selectRandomCoordinate from "@/utils/selectRandomCoordinate";
 
 const playerFactory = () => {
   let id = 0;
-  const player = ({ setupBoard, playBoard, name, ships }: PlayerArgs) => {
+  const player = ({
+    setupBoard,
+    playBoard,
+    name,
+    ships,
+    isHuman,
+  }: PlayerArgs) => {
     const playerId = ++id;
     const playerName = name;
     const hasWon = () => {
@@ -49,7 +56,35 @@ const playerFactory = () => {
       if (validCoordinates) setupBoard.addShip(validCoordinates);
     };
 
-    return { playerId, playerName, hasWon, setupBoard, placeShip };
+    const randomlyPlaceShip = (shipClass: ShipClass) => {
+      let keepGoing = true;
+      while (keepGoing) {
+        const isVertical = Math.random() < 0.5;
+        const coordinate = selectRandomCoordinate(setupBoard.freeCoordinates);
+        const validCoors = genValidCoordinates(
+          shipClass,
+          isVertical,
+          coordinate
+        );
+        if (!validCoors) continue;
+
+        setupBoard.addShip(validCoors);
+        keepGoing = false;
+      }
+    };
+
+    const randomlyPlaceShips = () => {
+      ships.forEach((s) => randomlyPlaceShip(s));
+    };
+
+    return {
+      playerId,
+      playerName,
+      hasWon,
+      placeShip,
+      isHuman,
+      randomlyPlaceShips,
+    };
   };
   return player;
 };

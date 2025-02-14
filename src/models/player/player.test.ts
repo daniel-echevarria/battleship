@@ -24,6 +24,14 @@ describe("Player", () => {
       setupBoard: setupBoardOne,
       name: myName,
       ships: shipClasses,
+      isHuman: false,
+    });
+  });
+
+  describe("randomlyPlaceShips", () => {
+    it("randomly places all the player's ships", () => {
+      player.randomlyPlaceShips();
+      expect(setupBoardOne.getShips().length).toBe(shipClasses.length);
     });
   });
 
@@ -51,10 +59,10 @@ describe("Player", () => {
         .mockResolvedValue("a1");
 
       const mockCanShipGoThere = vi
-        .spyOn(player.setupBoard, "canShipGoThere")
+        .spyOn(setupBoardOne, "canShipGoThere")
         .mockReturnValue(true);
 
-      const mockAddShip = vi.spyOn(player.setupBoard, "addShip");
+      const mockAddShip = vi.spyOn(setupBoardOne, "addShip");
 
       await player.placeShip({
         shipClass,
@@ -62,7 +70,7 @@ describe("Player", () => {
         inputProvider: vi.fn(),
       });
 
-      expect(player.setupBoard.getShips()).toHaveLength(1);
+      expect(setupBoardOne.getShips()).toHaveLength(1);
     });
 
     it("should not place the ship if the coordinate is not valid", async () => {
@@ -71,10 +79,10 @@ describe("Player", () => {
         .mockResolvedValue(undefined);
 
       const mockCanShipGoThere = vi
-        .spyOn(player.setupBoard, "canShipGoThere")
+        .spyOn(setupBoardOne, "canShipGoThere")
         .mockReturnValue(true);
 
-      const mockAddShip = vi.spyOn(player.setupBoard, "addShip");
+      const mockAddShip = vi.spyOn(setupBoardOne, "addShip");
 
       await player.placeShip({
         shipClass,
@@ -82,7 +90,7 @@ describe("Player", () => {
         inputProvider: vi.fn(),
       });
 
-      expect(player.setupBoard.getShips()).toHaveLength(0);
+      expect(setupBoardOne.getShips()).toHaveLength(0);
     });
 
     it("should not place the ship if the ship cannot go there", async () => {
@@ -91,10 +99,10 @@ describe("Player", () => {
         .mockResolvedValue("a1");
 
       const mockCanShipGoThere = vi
-        .spyOn(player.setupBoard, "canShipGoThere")
+        .spyOn(setupBoardOne, "canShipGoThere")
         .mockReturnValue(false);
 
-      const mockAddShip = vi.spyOn(player.setupBoard, "addShip");
+      const mockAddShip = vi.spyOn(setupBoardOne, "addShip");
 
       await player.placeShip({
         shipClass,
@@ -102,7 +110,7 @@ describe("Player", () => {
         inputProvider: vi.fn(),
       });
 
-      expect(player.setupBoard.getShips()).toHaveLength(0);
+      expect(setupBoardOne.getShips()).toHaveLength(0);
     });
   });
 });
