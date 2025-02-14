@@ -4,7 +4,6 @@ import { ShipClass } from "./shipTypes";
 type Player = {
   playerId: number;
   playerName: string;
-  setupBoard: SetupBoard;
   isHuman: boolean;
   hasWon: () => boolean;
   randomlyPlaceShips: () => void;

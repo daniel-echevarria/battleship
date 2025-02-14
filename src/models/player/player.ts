@@ -1,8 +1,8 @@
-import { Ship, ShipClass } from "@/types";
 import { PlaceShipArgs, PlayerArgs } from "@/playerTypes";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 import selectRandomCoordinate from "@/utils/selectRandomCoordinate";
+import { ShipClass } from "@/shipTypes";
 
 const playerFactory = () => {
   let id = 0;
@@ -69,12 +69,17 @@ const playerFactory = () => {
         if (!validCoors) continue;
 
         setupBoard.addShip(validCoors);
+        toggleShipClassPlacement(shipClass);
         keepGoing = false;
       }
     };
 
     const randomlyPlaceShips = () => {
       ships.forEach((s) => randomlyPlaceShip(s));
+    };
+
+    const toggleShipClassPlacement = (shipClass: ShipClass) => {
+      shipClass.isPlaced = shipClass.isPlaced ? false : true;
     };
 
     return {

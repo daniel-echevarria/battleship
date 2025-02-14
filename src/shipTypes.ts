@@ -9,7 +9,7 @@ type Ship = {
 type ShipClass = {
   name: string;
   length: number;
-  isPlaced: false;
+  isPlaced: boolean;
 };
 
 export { Ship, ShipClass };

@@ -35,6 +35,20 @@ describe("Player", () => {
     });
   });
 
+  // describe("toggleShipClassPlacement", () => {
+  //   it("toggles the shipClass isPlaced property", () => {
+  //     const shipClass: ShipClass = { name: "bob", length: 5, isPlaced: false };
+  //     player.toggleShipClassPlacement(shipClass);
+  //     expect(shipClass.isPlaced).toBe(true);
+  //   });
+
+  //   it("toggles the shipClass isPlaced property", () => {
+  //     const shipClass: ShipClass = { name: "bob", length: 5, isPlaced: true };
+  //     player.toggleShipClassPlacement(shipClass);
+  //     expect(shipClass.isPlaced).toBe(false);
+  //   });
+  // });
+
   describe("hasLost", () => {
     it("returns true if all ships are isDestroyed", () => {
       const areAllShipsDestroyedSpy = vi.spyOn(
