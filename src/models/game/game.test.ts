@@ -1,16 +1,19 @@
-import { Game, ShipClass } from "@/types";
+import { Game } from "@/types";
 import gameFactory from "./game";
 import playerFactory from "../player/player";
 import setupBoardFactory from "../setupBoard/setupBoard";
 import playBoardFactory from "../playBoard/playBoard";
 import shipClasses from "@/data/shipClasses";
-import * as getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 
 describe("game", () => {
   let game: Game;
 
   beforeEach(() => {
     game = setupGame();
+  });
+
+  describe("requestShipsPlacement", () => {
+    it("waits for the ");
   });
 });
 

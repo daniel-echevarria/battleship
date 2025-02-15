@@ -54,6 +54,7 @@ const playerFactory = () => {
       );
 
       if (validCoordinates) setupBoard.addShip(validCoordinates);
+      toggleShipClassPlacement(shipClass);
     };
 
     const randomlyPlaceShip = (shipClass: ShipClass) => {
