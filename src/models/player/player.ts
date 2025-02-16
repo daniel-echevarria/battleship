@@ -10,11 +10,12 @@ const playerFactory = () => {
     setupBoard,
     playBoard,
     name,
-    ships,
+    shipClasses,
     isHuman,
   }: PlayerArgs) => {
     const playerId = ++id;
     const playerName = name;
+    const ships = shipClasses.map((ship: ShipClass) => ({ ...ship }));
     const hasWon = () => {
       return playBoard.areAllShipsDestroyed();
     };
@@ -37,9 +38,9 @@ const playerFactory = () => {
     };
 
     const placeShip = async ({
+      inputProvider,
       shipClass,
       isVertical,
-      inputProvider,
     }: PlaceShipArgs) => {
       const coordinate = await getValidUserCoordinate({
         inputProvider,
@@ -83,6 +84,10 @@ const playerFactory = () => {
       shipClass.isPlaced = shipClass.isPlaced ? false : true;
     };
 
+    const areAllShipsPlaced = () => {
+      return ships.every((s) => s.isPlaced);
+    };
+
     return {
       playerId,
       playerName,
@@ -90,6 +95,7 @@ const playerFactory = () => {
       placeShip,
       isHuman,
       randomlyPlaceShips,
+      areAllShipsPlaced,
     };
   };
   return player;

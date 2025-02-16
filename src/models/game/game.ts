@@ -6,15 +6,23 @@ type GameArgs = {
 };
 const gameFactory = ({ players }: GameArgs) => {
   let currentPlayer = players[0];
+  let gameStarted = false;
 
   const isGameOver = () => {
     return false;
+  };
+
+  const requestShipsPlacement = () => {
+    players.forEach((p) => {
+      p.isHuman ? "ui for player placing ships" : p.randomlyPlaceShips();
+    });
   };
 
   return {
     currentPlayer,
     isGameOver,
     players,
+    requestShipsPlacement,
   };
 };
 

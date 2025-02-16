@@ -1,21 +1,23 @@
 import { PlayBoard, SetupBoard } from "@/boardTypes";
 import { Player } from "@/playerTypes";
-import { ShipClass } from "@/types";
 import playerFactory from "./player";
 import setupBoard from "../setupBoard/setupBoard";
 import playBoardFactory from "../playBoard/playBoard";
 import * as getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 import shipClasses from "@/data/shipClasses";
+import { ShipClass } from "@/shipTypes";
 
 describe("Player", () => {
   let player: Player;
   let setupBoardOne: SetupBoard;
   let playBoardOne: PlayBoard;
+  let myPlayerFactory: any;
+  let myName = "Joe";
 
   beforeEach(() => {
-    const myPlayerFactory = playerFactory();
+    myPlayerFactory = playerFactory();
     const setupBoardFactory = setupBoard();
-    const myName = "Kevin";
+    myName = "Kevin";
     setupBoardOne = setupBoardFactory(10);
     const myPlayBoardFactory = playBoardFactory();
     playBoardOne = myPlayBoardFactory(setupBoardOne);
@@ -23,7 +25,7 @@ describe("Player", () => {
       playBoard: playBoardOne,
       setupBoard: setupBoardOne,
       name: myName,
-      ships: shipClasses,
+      shipClasses,
       isHuman: false,
     });
   });
@@ -35,19 +37,35 @@ describe("Player", () => {
     });
   });
 
-  // describe("toggleShipClassPlacement", () => {
-  //   it("toggles the shipClass isPlaced property", () => {
-  //     const shipClass: ShipClass = { name: "bob", length: 5, isPlaced: false };
-  //     player.toggleShipClassPlacement(shipClass);
-  //     expect(shipClass.isPlaced).toBe(true);
-  //   });
+  describe("areAllShipsPlaced", () => {
+    it("returns true if all ships are placed", () => {
+      const shipClassOne = { isPlaced: true };
+      const shipClassTwo = { isPlaced: true };
+      const shipClasses = [shipClassOne, shipClassTwo];
+      player = myPlayerFactory({
+        playBoard: playBoardOne,
+        setupBoard: setupBoardOne,
+        name: myName,
+        shipClasses,
+        isHuman: false,
+      });
+      expect(player.areAllShipsPlaced()).toBe(true);
+    });
 
-  //   it("toggles the shipClass isPlaced property", () => {
-  //     const shipClass: ShipClass = { name: "bob", length: 5, isPlaced: true };
-  //     player.toggleShipClassPlacement(shipClass);
-  //     expect(shipClass.isPlaced).toBe(false);
-  //   });
-  // });
+    it("returns false if at least one ship is not placed", () => {
+      const shipClassOne = { isPlaced: false };
+      const shipClassTwo = { isPlaced: true };
+      const shipClasses = [shipClassOne, shipClassTwo];
+      player = myPlayerFactory({
+        playBoard: playBoardOne,
+        setupBoard: setupBoardOne,
+        name: myName,
+        shipClasses,
+        isHuman: false,
+      });
+      expect(player.areAllShipsPlaced()).toBe(false);
+    });
+  });
 
   describe("hasLost", () => {
     it("returns true if all ships are isDestroyed", () => {
@@ -64,7 +82,7 @@ describe("Player", () => {
     let shipClass: ShipClass;
 
     beforeEach(() => {
-      shipClass = { name: "drak", length: 3 };
+      shipClass = { name: "drak", length: 3, isPlaced: false };
     });
 
     it("should place the ship if the coordinate is valid for that ship configuration", async () => {

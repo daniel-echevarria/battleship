@@ -7,13 +7,14 @@ type Player = {
   isHuman: boolean;
   hasWon: () => boolean;
   randomlyPlaceShips: () => void;
+  areAllShipsPlaced: () => boolean;
   placeShip: ({ shipClass, isVertical, inputProvider }: PlaceShipArgs) => void;
 };
 
 type PlayerArgs = {
   setupBoard: SetupBoard;
   playBoard: PlayBoard;
-  ships: ShipClass[];
+  shipClasses: ShipClass[];
   name: string;
   isHuman: boolean;
 };

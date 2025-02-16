@@ -13,7 +13,11 @@ describe("game", () => {
   });
 
   describe("requestShipsPlacement", () => {
-    it("waits for the ");
+    it("places all ships for both players", async () => {
+      await game.requestShipsPlacement();
+
+      expect(game.players.every((p) => p.areAllShipsPlaced())).toBe(true);
+    });
   });
 });
 
@@ -36,14 +40,14 @@ const setupGame = () => {
     name: "Joe",
     setupBoard: setupBoardOne,
     playBoard: playBoardOne,
-    ships: shipClasses,
-    isHuman: true,
+    shipClasses,
+    isHuman: false,
   });
   const player2 = createPlayer({
     name: "Blake",
     setupBoard: setupBoardTwo,
     playBoard: playBoardTwo,
-    ships: shipClasses,
+    shipClasses,
     isHuman: false,
   });
 

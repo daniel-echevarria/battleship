@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 const App = () => {
+  const [gameStarted, setGameStarted] = useState();
   const [heading, setHeading] = useState("Magnificent Monkeys");
 
   const clickHandler = () => {
