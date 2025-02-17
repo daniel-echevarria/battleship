@@ -1,4 +1,4 @@
-import { PlayBoard, SetupBoard } from "@/types";
+import { PlayBoard, SetupBoard } from "@/types/types";
 import setupBoard from "../setupBoard/setupBoard";
 import playBoardFactory from "./playBoard";
 

@@ -1,4 +1,4 @@
-import { Ship, ShipClass } from "./types";
+import { Ship, ShipClass } from "./types/types";
 
 type SetupBoard = {
   boardId: number;

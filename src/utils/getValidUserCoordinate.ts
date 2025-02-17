@@ -1,4 +1,4 @@
-import { GetValidUserCoordinateArgs } from "@/playerTypes";
+import { GetValidUserCoordinateArgs } from "@/types/playerTypes";
 
 const getValidUserCoordinate = async ({
   inputProvider,

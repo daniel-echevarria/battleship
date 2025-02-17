@@ -1,4 +1,5 @@
-import { Player, ShipClass } from "@/types";
+import { Player } from "@/types/playerTypes";
+import { ShipClass } from "@/types/shipTypes";
 
 type GameArgs = {
   players: Player[];

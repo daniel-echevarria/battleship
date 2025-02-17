@@ -1,4 +1,4 @@
-import { ShipClass } from "@/shipTypes";
+import { ShipClass } from "@/types/shipTypes";
 
 const shipClasses: ShipClass[] = [
   { name: "Langskip", length: 5, isPlaced: false },

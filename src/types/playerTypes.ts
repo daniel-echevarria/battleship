@@ -1,5 +1,5 @@
 import { SetupBoard, PlayBoard } from "./boardTypes";
-import { ShipClass } from "./shipTypes";
+import { ShipClass } from "./types/shipTypes";
 
 type Player = {
   playerId: number;

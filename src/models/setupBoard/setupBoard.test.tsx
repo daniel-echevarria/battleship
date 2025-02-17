@@ -1,4 +1,4 @@
-import { SetupBoard } from "@/boardTypes";
+import { SetupBoard } from "@/types/boardTypes";
 import setupBoardFactory from "./setupBoard";
 
 describe("setupBoard", () => {

@@ -1,4 +1,4 @@
-import { Game } from "@/types";
+import { Game } from "@/types/types";
 import gameFactory from "./game";
 import playerFactory from "../player/player";
 import setupBoardFactory from "../setupBoard/setupBoard";

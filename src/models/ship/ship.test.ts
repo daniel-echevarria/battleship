@@ -1,4 +1,4 @@
-import { Ship } from "@/types";
+import { Ship } from "@/types/types";
 import shipFactory from "./ship";
 
 describe("ship", () => {

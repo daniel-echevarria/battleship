@@ -1,11 +1,11 @@
-import { PlayBoard, SetupBoard } from "@/boardTypes";
-import { Player } from "@/playerTypes";
+import { PlayBoard, SetupBoard } from "@/types/boardTypes";
+import { Player } from "@/types/playerTypes";
 import playerFactory from "./player";
 import setupBoard from "../setupBoard/setupBoard";
 import playBoardFactory from "../playBoard/playBoard";
 import * as getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 import shipClasses from "@/data/shipClasses";
-import { ShipClass } from "@/shipTypes";
+import { ShipClass } from "@/types/shipTypes";
 
 describe("Player", () => {
   let player: Player;

@@ -1,8 +1,8 @@
-import { PlaceShipArgs, PlayerArgs } from "@/playerTypes";
+import { PlaceShipArgs, PlayerArgs } from "@/types/playerTypes";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import getValidUserCoordinate from "@/utils/getValidUserCoordinate";
 import selectRandomCoordinate from "@/utils/selectRandomCoordinate";
-import { ShipClass } from "@/shipTypes";
+import { ShipClass } from "@/types/shipTypes";
 
 const playerFactory = () => {
   let id = 0;

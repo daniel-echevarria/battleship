@@ -2,8 +2,8 @@ import shipFactory from "../ship/ship";
 import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinates";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
-import { Ship } from "@/types";
-import { CanShipGoThereArgs } from "@/boardTypes";
+import { Ship } from "@/types/shipTypes";
+import { CanShipGoThereArgs } from "@/types/boardTypes";
 
 const setupBoardFactory = () => {
   let id = 0;

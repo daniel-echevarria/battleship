@@ -1,5 +1,5 @@
-import { Ship } from "@/types";
-import { SetupBoard } from "@/boardTypes";
+import { Ship } from "@/types/shipTypes";
+import { SetupBoard } from "@/types/boardTypes";
 import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinates";
 
 const playBoardFactory = () => {
