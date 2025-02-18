@@ -10,9 +10,9 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
   const mySetupBoardFactory = setupBoardFactory();
   const mySetupBoard = mySetupBoardFactory(boardSize);
   return (
-    <>
+    <main className="flex m-auto">
       <SetupBoard setupBoard={mySetupBoard} />
-    </>
+    </main>
   );
 };
 

@@ -7,7 +7,11 @@ const SetupBoard = ({ setupBoard }) => {
   const cellList = coordinates.map((coo) => {
     return <Cell text={coo} />;
   });
-  return <div role="grid">{cellList}</div>;
+  return (
+    <div role="grid" className="grid grid-cols-10 bg-green-400">
+      {cellList}
+    </div>
+  );
 };
 
 export default SetupBoard;

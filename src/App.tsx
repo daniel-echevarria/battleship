@@ -3,14 +3,12 @@ import { useState } from "react";
 import Game from "./ui/Game/Game";
 
 const App = () => {
-  const clickHandler = () => {
-    setHeading("Radical Rhinos");
-  };
-
   return (
-    <>
+    <div className="grid grid-rows-[100px_1fr_50px] grid-cols-1 bg-yellow-400 h-screen w-screen">
+      <header></header>
       <Game boardSize={10} />
-    </>
+      <footer></footer>
+    </div>
   );
 };
 
