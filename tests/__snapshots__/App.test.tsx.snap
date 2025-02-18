@@ -1,5 +1,714 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`App component > renders a board with 100 cells 1`] = `
+<div>
+  <div
+    role="grid"
+  >
+    <div
+      role="gridcell"
+    >
+       
+      a1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      a10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      b10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      c10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      d10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      e10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      f10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      g10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      h10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      i10
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j1
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j2
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j3
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j4
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j5
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j6
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j7
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j8
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j9
+       
+    </div>
+    <div
+      role="gridcell"
+    >
+       
+      j10
+       
+    </div>
+  </div>
+</div>
+`;
+
 exports[`App component > renders magnificent monkeys 1`] = `
 <div>
   <button
