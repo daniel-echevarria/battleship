@@ -1,6 +1,5 @@
 import { ShipClass } from "@/types/shipTypes";
 import React from "react";
-import Draggable from "react-draggable";
 
 interface CellProps {
   shipClass: ShipClass;
