@@ -10,7 +10,6 @@ const Ship: React.FC<CellProps> = ({ shipClass }) => {
     <>
       <div
         className="bg-white rounded-none border-white h-12 w-12 cursor-grab"
-        draggable
         role="ship"
       ></div>
     </>
