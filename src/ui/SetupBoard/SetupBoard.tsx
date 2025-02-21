@@ -13,7 +13,6 @@ const SetupBoard = ({ setupBoard }) => {
   const [parent, setParent] = useState(null);
   const draggableMarkup = (
     <Draggable id="draggable">
-      {/* Drag Me */}
       <Ship shipClass={shipClasses[0]} />
     </Draggable>
   );
@@ -26,7 +25,7 @@ const SetupBoard = ({ setupBoard }) => {
     );
   });
 
-  const handleDragEnd = (event) => {
+  const handleDragEnd = (event: any) => {
     const { over } = event;
     setParent(over ? over.id : null);
   };
@@ -34,11 +33,9 @@ const SetupBoard = ({ setupBoard }) => {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       {parent === null ? draggableMarkup : null}
-
-      {cellList}
-      {/* <div role="grid" className="grid grid-cols-10 bg-green-400">
+      <div role="grid" className="grid grid-cols-10 ">
         {cellList}
-      </div> */}
+      </div>
     </DndContext>
   );
 };

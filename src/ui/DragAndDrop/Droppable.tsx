@@ -5,12 +5,13 @@ const Droppable = ({ id, children }) => {
   const { isOver, setNodeRef } = useDroppable({
     id: id,
   });
-  const style = {
-    color: isOver ? "green" : undefined,
+
+  const handleDragEnter = (e) => {
+    e.target.classList.add("bor");
   };
 
   return (
-    <div ref={setNodeRef} style={style}>
+    <div ref={setNodeRef} className="flex items-center justify-center ">
       {children}
     </div>
   );
