@@ -8,11 +8,17 @@ const Draggable = ({ id, children }) => {
   });
 
   const style = transform
-    ? { transform: CSS.Translate.toString(transform) }
+    ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
     : undefined;
 
   return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+      className="z-10"
+    >
       {children}
     </div>
   );

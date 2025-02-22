@@ -6,12 +6,13 @@ const Droppable = ({ id, children }) => {
     id: id,
   });
 
-  const handleDragEnter = (e) => {
-    e.target.classList.add("bor");
-  };
-
   return (
-    <div ref={setNodeRef} className="flex items-center justify-center ">
+    <div
+      ref={setNodeRef}
+      className={`${
+        isOver ? "bg-green-400" : "bg-blue-400"
+      } flex items-center justify-center`}
+    >
       {children}
     </div>
   );
