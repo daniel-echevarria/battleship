@@ -9,7 +9,7 @@ const Ship: React.FC<CellProps> = ({ shipClass }) => {
   return (
     <>
       <div
-        className="bg-white rounded-none border-white h-12 w-12 cursor-grab "
+        className="bg-white rounded-none border-white h-24 w-12 cursor-grab absolute top-1"
         role="ship"
       ></div>
     </>

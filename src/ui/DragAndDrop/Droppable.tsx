@@ -9,9 +9,7 @@ const Droppable = ({ id, children }) => {
   return (
     <div
       ref={setNodeRef}
-      className={`${
-        isOver ? "bg-green-400" : "bg-blue-400"
-      } flex items-center justify-center`}
+      className={`${isOver ? "bg-green-400" : "bg-blue-400"} `}
     >
       {children}
     </div>

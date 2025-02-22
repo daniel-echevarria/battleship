@@ -13,7 +13,9 @@ const SetupBoard = ({ setupBoard }) => {
   const [parent, setParent] = useState(null);
   const draggableMarkup = (
     <Draggable id="draggable">
-      <Ship shipClass={shipClasses[0]} />
+      <Cell id={parent}>
+        <Ship shipClass={shipClasses[0]} />
+      </Cell>
     </Draggable>
   );
 

@@ -17,7 +17,7 @@ const Draggable = ({ id, children }) => {
       style={style}
       {...listeners}
       {...attributes}
-      className="z-10"
+      className="z-10 relative"
     >
       {children}
     </div>
