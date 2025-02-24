@@ -14,6 +14,7 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
   return (
     <main className="flex m-auto">
       <Ship shipClass={shipClasses[0]} />
+      <Ship shipClass={shipClasses[1]} />
       <SetupBoard setupBoard={mySetupBoard} />
     </main>
   );
