@@ -4,27 +4,26 @@ import React from "react";
 
 interface CellProps {
   shipClass: ShipClass;
+  setShipGrabOffset: React.Dispatch<React.SetStateAction<number>>;
 }
 
-// Algo to calculate hovered cells.
-// Given a ship determine how many cells above is the top of the ship
-// from that top hover as many cells as the length of the ship
-
-const Ship: React.FC<CellProps> = ({ shipClass }) => {
+const Ship: React.FC<CellProps> = ({ shipClass, setShipGrabOffset }) => {
   const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
     e.dataTransfer.setData("shipClass", JSON.stringify(shipClass));
     e.dataTransfer.effectAllowed = "move"; // Only allow moving
+    setShipGrabOffset(getGrabbedCellIndex(e));
+  };
+
+  const getGrabbedCellIndex = (e) => {
     const target = e.target as HTMLElement;
     const { top, left, height } = target.getBoundingClientRect();
     const cellSize = height / shipClass.length;
     const relativeMouseCoordinate = e.clientY - top;
-    const grabbedCellIndex = calculateGrabOffset(
+    return calculateGrabOffset(
       cellSize,
       relativeMouseCoordinate,
       shipClass.length
     );
-    console.log(grabbedCellIndex);
-    console.log(e.clientX, top, left);
   };
 
   const shipCellsArray = Array.from({ length: shipClass.length }, (_, i) => i);
