@@ -4,6 +4,7 @@ import Cell from "../Cell/Cell";
 import Ship from "../Ship/Ship";
 import shipClasses from "@/data/shipClasses";
 import { calculateStartShip } from "@/utils/calculateStartShip";
+import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 
 // Algo for correctly show hovered cells:
 // On drag enter, calculate the potential starting coordinate of the ship
@@ -13,6 +14,12 @@ import { calculateStartShip } from "@/utils/calculateStartShip";
 
 const SetupBoard = ({ setupBoard }) => {
   const [potentialShipStart, setPotentialShipStart] = React.useState("");
+  const hoveredCells = genShipCoordinates({
+    length: shipClasses[0].length,
+    startCoordinate: potentialShipStart,
+    isVertical: true,
+  });
+  console.log(hoveredCells);
   const [shipGrabOffset, setShipGrabOffset] = React.useState(0);
   const coordinates = genBoardCoordinates(setupBoard.size, setupBoard.size);
   const cellList = coordinates.map((coo) => {
@@ -22,7 +29,7 @@ const SetupBoard = ({ setupBoard }) => {
         key={coo}
         setPotentialShipStart={setPotentialShipStart}
         shipGrabOffset={shipGrabOffset}
-        isStartCoordinate={potentialShipStart === coo}
+        isStartCoordinate={hoveredCells.includes(coo)}
       />
     );
   });
