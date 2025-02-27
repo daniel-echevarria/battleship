@@ -7,8 +7,8 @@ export function calculateStartShip(
   const row = parseInt(coordinate.slice(1));
 
   if (isVertical) {
-    return `${String.fromCharCode(column.charCodeAt(0) - offSet)}${row}`;
-  } else {
     return `${column}${row - offSet}`;
+  } else {
+    return `${String.fromCharCode(column.charCodeAt(0) - offSet)}${row}`;
   }
 }

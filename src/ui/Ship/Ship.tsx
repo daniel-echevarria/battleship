@@ -11,7 +11,8 @@ const Ship: React.FC<CellProps> = ({ shipClass, setShipGrabOffset }) => {
   const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
     e.dataTransfer.setData("shipClass", JSON.stringify(shipClass));
     e.dataTransfer.effectAllowed = "move"; // Only allow moving
-    setShipGrabOffset(getGrabbedCellIndex(e));
+    const grabbedCellIndex = getGrabbedCellIndex(e);
+    setShipGrabOffset(grabbedCellIndex);
   };
 
   const getGrabbedCellIndex = (e) => {
