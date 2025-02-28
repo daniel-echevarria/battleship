@@ -4,6 +4,7 @@ import Cell from "../Cell/Cell";
 import Ship from "../Ship/ShipUI";
 import shipClasses from "@/data/shipClasses";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
+import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
 
 // Algo for correctly show hovered cells:
 // On drag enter, calculate the potential starting coordinate of the ship
@@ -12,24 +13,29 @@ import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates
 // on drag leave, remove the hover effect from the cells
 
 const SetupBoard = ({ setupBoard }) => {
-  const [potentialShipStart, setPotentialShipStart] = React.useState("");
+  const [placedShips, setPlacedShips] = React.useState([]);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
+    potentialStart: "",
     grabOffset: null,
     length: 0,
     isVertical: true,
   });
 
-  const hoveredCells = genShipCoordinates({
+  const shipHoveredCells = genShipCoordinates({
     length: grabbedShipInfo.length,
-    startCoordinate: potentialShipStart,
-    isVertical: true,
+    startCoordinate: grabbedShipInfo.potentialStart,
+    isVertical: grabbedShipInfo.isVertical,
   });
 
+  const activeCells = genNearbyCoordinates(shipHoveredCells);
+
   const isValidPosition = setupBoard.canShipGoThere({
-    startCoordinate: potentialShipStart,
+    startCoordinate: grabbedShipInfo.potentialStart,
     length: grabbedShipInfo.length,
     isVertical: grabbedShipInfo.isVertical,
   });
+
+  console.log(placedShips);
 
   const coordinates = genBoardCoordinates(setupBoard.size, setupBoard.size);
   const cellList = coordinates.map((coo) => {
@@ -37,10 +43,13 @@ const SetupBoard = ({ setupBoard }) => {
       <Cell
         id={coo}
         key={coo}
-        setPotentialShipStart={setPotentialShipStart}
+        setGrabbedShipInfo={setGrabbedShipInfo}
         grabbedShipInfo={grabbedShipInfo}
-        isHovered={hoveredCells.includes(coo)}
+        isHovered={activeCells.includes(coo)}
         isValidPosition={isValidPosition}
+        placedShips={placedShips}
+        setPlacedShips={setPlacedShips}
+        hasShip={placedShips.flat().includes(coo)}
       />
     );
   });

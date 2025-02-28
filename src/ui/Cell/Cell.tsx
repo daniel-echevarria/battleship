@@ -1,5 +1,6 @@
 import { calculateStartShip } from "@/utils/calculateStartShip";
 import React from "react";
+import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 
 interface CellProps {
   id: string;
@@ -9,10 +10,13 @@ interface CellProps {
 
 const Cell: React.FC<CellProps> = ({
   id,
-  setPotentialShipStart,
   grabbedShipInfo,
+  setGrabbedShipInfo,
   isHovered,
   isValidPosition,
+  placedShips,
+  setPlacedShips,
+  hasShip,
 }) => {
   const [cellColor, setCellColor] = React.useState("bg-blue-400");
 
@@ -23,7 +27,7 @@ const Cell: React.FC<CellProps> = ({
       grabbedShipInfo.grabOffset,
       true
     );
-    setPotentialShipStart(shipStart);
+    setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: shipStart });
   };
 
   const handleDragOver = (e) => {
@@ -36,8 +40,13 @@ const Cell: React.FC<CellProps> = ({
   };
 
   const handleDrop = (e) => {
+    const shipCells = genShipCoordinates({
+      length: grabbedShipInfo.length,
+      startCoordinate: grabbedShipInfo.potentialStart,
+      isVertical: grabbedShipInfo.isVertical,
+    });
+    setPlacedShips([...placedShips, shipCells]);
     e.preventDefault();
-    const droppedData = e.dataTransfer.getData("shipClass");
     setCellColor("bg-yellow-50");
   };
 
@@ -45,12 +54,16 @@ const Cell: React.FC<CellProps> = ({
     return isValidPosition ? "bg-green-400" : "bg-red-400";
   };
 
+  const determineCellColor = () => {
+    return hasShip ? "bg-yellow-50" : "bg-blue-400";
+  };
+
   return (
     <>
       <div
         role="gridcell"
         className={`${
-          isHovered ? hoveredCellColor() : "bg-blue-400"
+          isHovered ? hoveredCellColor() : determineCellColor()
         } rounded-none border border-white h-12 w-12 `}
         onDragEnter={(e) => handleDragEnter(e)}
         onDragOver={(e) => handleDragOver(e)}

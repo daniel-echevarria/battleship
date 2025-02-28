@@ -15,6 +15,7 @@ const Ship: React.FC<ShipProps> = ({
   const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
     e.dataTransfer.setData("shipClass", JSON.stringify(shipClass));
     e.dataTransfer.effectAllowed = "move"; // Only allow moving
+    console.log(e.target);
     setGrabbedShipInfo({
       ...grabbedShipInfo,
       length: shipClass.length,
