@@ -19,8 +19,6 @@ const SetupBoard = ({ setupBoard }) => {
     isVertical: true,
   });
 
-  console.log(grabbedShipInfo);
-
   const hoveredCells = genShipCoordinates({
     length: grabbedShipInfo.length,
     startCoordinate: potentialShipStart,
@@ -29,6 +27,8 @@ const SetupBoard = ({ setupBoard }) => {
 
   const isValidPosition = setupBoard.canShipGoThere({
     startCoordinate: potentialShipStart,
+    length: grabbedShipInfo.length,
+    isVertical: grabbedShipInfo.isVertical,
   });
 
   const coordinates = genBoardCoordinates(setupBoard.size, setupBoard.size);
@@ -40,6 +40,7 @@ const SetupBoard = ({ setupBoard }) => {
         setPotentialShipStart={setPotentialShipStart}
         grabbedShipInfo={grabbedShipInfo}
         isHovered={hoveredCells.includes(coo)}
+        isValidPosition={isValidPosition}
       />
     );
   });

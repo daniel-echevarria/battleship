@@ -12,6 +12,7 @@ const Cell: React.FC<CellProps> = ({
   setPotentialShipStart,
   grabbedShipInfo,
   isHovered,
+  isValidPosition,
 }) => {
   const [cellColor, setCellColor] = React.useState("bg-blue-400");
 
@@ -40,12 +41,16 @@ const Cell: React.FC<CellProps> = ({
     setCellColor("bg-yellow-50");
   };
 
+  const hoveredCellColor = () => {
+    return isValidPosition ? "bg-green-400" : "bg-red-400";
+  };
+
   return (
     <>
       <div
         role="gridcell"
         className={`${
-          isHovered ? "bg-green-400" : "bg-blue-400"
+          isHovered ? hoveredCellColor() : "bg-blue-400"
         } rounded-none border border-white h-12 w-12 `}
         onDragEnter={(e) => handleDragEnter(e)}
         onDragOver={(e) => handleDragOver(e)}
