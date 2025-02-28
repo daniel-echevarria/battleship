@@ -10,14 +10,18 @@ interface CellProps {
 const Cell: React.FC<CellProps> = ({
   id,
   setPotentialShipStart,
-  shipGrabOffset,
-  isStartCoordinate,
+  grabbedShipInfo,
+  isHovered,
 }) => {
   const [cellColor, setCellColor] = React.useState("bg-blue-400");
 
   const handleDragEnter = (e) => {
     e.preventDefault(); // Necessary. Allows us to drop.
-    const shipStart = calculateStartShip(e.target.id, shipGrabOffset, true);
+    const shipStart = calculateStartShip(
+      e.target.id,
+      grabbedShipInfo.grabOffset,
+      true
+    );
     setPotentialShipStart(shipStart);
   };
 
@@ -41,7 +45,7 @@ const Cell: React.FC<CellProps> = ({
       <div
         role="gridcell"
         className={`${
-          isStartCoordinate ? "bg-green-400" : "bg-blue-400"
+          isHovered ? "bg-green-400" : "bg-blue-400"
         } rounded-none border border-white h-12 w-12 `}
         onDragEnter={(e) => handleDragEnter(e)}
         onDragOver={(e) => handleDragOver(e)}

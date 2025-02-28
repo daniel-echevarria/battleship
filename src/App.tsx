@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Game from "./ui/Game/Game";
+import Game from "./ui/Game/GameUI";
 
 const App = () => {
   return (
