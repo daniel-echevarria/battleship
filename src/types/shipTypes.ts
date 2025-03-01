@@ -7,6 +7,7 @@ type Ship = {
 };
 
 type ShipClass = {
+  id: number;
   name: string;
   length: number;
   isPlaced: boolean;

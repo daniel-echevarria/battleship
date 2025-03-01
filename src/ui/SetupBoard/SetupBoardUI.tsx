@@ -19,21 +19,28 @@ const SetupBoard = ({ setupBoard }) => {
     grabOffset: null,
     length: 0,
     isVertical: true,
+    id: "",
   });
 
-  const shipHoveredCells = genShipCoordinates({
-    length: grabbedShipInfo.length,
-    startCoordinate: grabbedShipInfo.potentialStart,
-    isVertical: grabbedShipInfo.isVertical,
-  });
-
-  const activeCells = genNearbyCoordinates(shipHoveredCells);
+  const getShipHoveredCells = () => {
+    const shipCoordinates = genShipCoordinates({
+      length: grabbedShipInfo.length,
+      startCoordinate: grabbedShipInfo.potentialStart,
+      isVertical: grabbedShipInfo.isVertical,
+    });
+    return genNearbyCoordinates(shipCoordinates);
+  };
 
   const isValidPosition = setupBoard.canShipGoThere({
     startCoordinate: grabbedShipInfo.potentialStart,
     length: grabbedShipInfo.length,
     isVertical: grabbedShipInfo.isVertical,
   });
+
+  const getCellsWithShips = () => {
+    const placedShipsCoordinates = placedShips.map((ship) => ship.coordinates);
+    return placedShipsCoordinates.flat();
+  };
 
   console.log(placedShips);
 
@@ -45,27 +52,31 @@ const SetupBoard = ({ setupBoard }) => {
         key={coo}
         setGrabbedShipInfo={setGrabbedShipInfo}
         grabbedShipInfo={grabbedShipInfo}
-        isHovered={activeCells.includes(coo)}
+        isHovered={getShipHoveredCells().includes(coo)}
         isValidPosition={isValidPosition}
         placedShips={placedShips}
         setPlacedShips={setPlacedShips}
-        hasShip={placedShips.flat().includes(coo)}
+        hasShip={getCellsWithShips().includes(coo)}
       />
     );
   });
 
+  const notPlacedShipsList = shipClasses.map((shipClass, i) => {
+    if (!placedShips.includes(shipClass.id)) {
+      return (
+        <Ship
+          key={i}
+          shipClass={shipClass}
+          grabbedShipInfo={grabbedShipInfo}
+          setGrabbedShipInfo={setGrabbedShipInfo}
+        />
+      );
+    }
+  });
+
   return (
     <>
-      <Ship
-        shipClass={shipClasses[0]}
-        grabbedShipInfo={grabbedShipInfo}
-        setGrabbedShipInfo={setGrabbedShipInfo}
-      />
-      <Ship
-        shipClass={shipClasses[1]}
-        grabbedShipInfo={grabbedShipInfo}
-        setGrabbedShipInfo={setGrabbedShipInfo}
-      />
+      {notPlacedShipsList}
       <div role="grid" className="grid grid-cols-10">
         {cellList}
       </div>

@@ -40,15 +40,16 @@ const Cell: React.FC<CellProps> = ({
   };
 
   const handleDrop = (e) => {
-    const shipCells = genShipCoordinates({
+    const shipCoordinates = genShipCoordinates({
       length: grabbedShipInfo.length,
       startCoordinate: grabbedShipInfo.potentialStart,
       isVertical: grabbedShipInfo.isVertical,
     });
-    // const shipData = e.dataTransfer.getData("shipClass");
-    // console.log(shipData);
     setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: "" });
-    setPlacedShips([...placedShips, shipCells]);
+    setPlacedShips([
+      ...placedShips,
+      { id: grabbedShipInfo.id, coordinates: shipCoordinates },
+    ]);
     e.preventDefault();
   };
 
