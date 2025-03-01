@@ -1,6 +1,10 @@
 import setupBoardFactory from "@/models/setupBoard/setupBoard";
 import React from "react";
+<<<<<<< HEAD:src/ui/Game/Game.tsx
 import SetupBoard from "../SetupBoard/SetupBoard";
+=======
+import SetupBoard from "../SetupBoard/SetupBoardUI";
+>>>>>>> display-all-hover:src/ui/Game/GameUI.tsx
 
 interface GameProps {
   boardSize: number;

@@ -22,16 +22,16 @@ const setupBoardFactory = () => {
     };
 
     const canShipGoThere = ({
-      shipClass,
+      length,
       isVertical,
-      coordinate,
+      startCoordinate,
     }: CanShipGoThereArgs) => {
-      if (!coordinate) return false;
+      if (!startCoordinate) return false;
 
       const shipCoordinates = genShipCoordinates({
-        length: shipClass.length,
+        length,
         isVertical,
-        startCoordinate: coordinate,
+        startCoordinate,
       });
       return areAllCoordinatesAvailable(shipCoordinates);
     };
