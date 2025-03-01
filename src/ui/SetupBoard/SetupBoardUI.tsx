@@ -1,6 +1,6 @@
 import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinates";
 import React from "react";
-import Cell from "../Cell/Cell";
+import Cell from "../Cell/CellUI";
 import Ship from "../Ship/ShipUI";
 import shipClasses from "@/data/shipClasses";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";

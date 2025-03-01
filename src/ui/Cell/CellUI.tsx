@@ -18,7 +18,7 @@ const Cell: React.FC<CellProps> = ({
   setPlacedShips,
   hasShip,
 }) => {
-  const [cellColor, setCellColor] = React.useState("bg-blue-400");
+  // const [cellColor, setCellColor] = React.useState("bg-blue-400");
 
   const handleDragEnter = (e) => {
     e.preventDefault(); // Necessary. Allows us to drop.
@@ -36,7 +36,7 @@ const Cell: React.FC<CellProps> = ({
   };
 
   const handleDragLeave = (e) => {
-    setCellColor("bg-blue-400");
+    // setCellColor("bg-blue-400");
   };
 
   const handleDrop = (e) => {
@@ -45,9 +45,11 @@ const Cell: React.FC<CellProps> = ({
       startCoordinate: grabbedShipInfo.potentialStart,
       isVertical: grabbedShipInfo.isVertical,
     });
+    // const shipData = e.dataTransfer.getData("shipClass");
+    // console.log(shipData);
+    setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: "" });
     setPlacedShips([...placedShips, shipCells]);
     e.preventDefault();
-    setCellColor("bg-yellow-50");
   };
 
   const hoveredCellColor = () => {
@@ -55,7 +57,9 @@ const Cell: React.FC<CellProps> = ({
   };
 
   const determineCellColor = () => {
-    return hasShip ? "bg-yellow-50" : "bg-blue-400";
+    return hasShip
+      ? "bg-yellow-50 border-blue-950"
+      : "bg-blue-400 border-white";
   };
 
   return (
@@ -64,10 +68,10 @@ const Cell: React.FC<CellProps> = ({
         role="gridcell"
         className={`${
           isHovered ? hoveredCellColor() : determineCellColor()
-        } rounded-none border border-white h-12 w-12 `}
+        } rounded-none border h-12 w-12 `}
         onDragEnter={(e) => handleDragEnter(e)}
         onDragOver={(e) => handleDragOver(e)}
-        onDragLeave={(e) => handleDragLeave(e)}
+        // onDragLeave={(e) => handleDragLeave(e)}
         onDrop={(e) => handleDrop(e)}
         id={id}
       ></div>
