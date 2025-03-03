@@ -4,6 +4,13 @@ import React from "react";
 
 interface ShipProps {
   shipClass: ShipClass;
+  grabbedShipInfo: {
+    potentialStart: string;
+    grabOffset: number;
+    length: number;
+    isVertical: boolean;
+    id: string;
+  };
   setShipGrabOffset: React.Dispatch<React.SetStateAction<number>>;
 }
 
