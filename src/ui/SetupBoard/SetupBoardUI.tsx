@@ -42,8 +42,6 @@ const SetupBoard = ({ setupBoard }) => {
     return placedShipsCoordinates.flat();
   };
 
-  console.log(placedShips);
-
   const coordinates = genBoardCoordinates(setupBoard.size, setupBoard.size);
   const cellList = coordinates.map((coo) => {
     return (
@@ -61,11 +59,12 @@ const SetupBoard = ({ setupBoard }) => {
     );
   });
 
-  const notPlacedShipsList = shipClasses.map((shipClass, i) => {
-    if (!placedShips.includes(shipClass.id)) {
+  const notPlacedShipsList = shipClasses.map((shipClass) => {
+    const placedShipsIds = placedShips.map((ship) => ship.id);
+    if (!placedShipsIds.includes(shipClass.id)) {
       return (
         <Ship
-          key={i}
+          key={shipClass.id}
           shipClass={shipClass}
           grabbedShipInfo={grabbedShipInfo}
           setGrabbedShipInfo={setGrabbedShipInfo}
