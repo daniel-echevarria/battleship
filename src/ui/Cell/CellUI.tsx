@@ -40,12 +40,13 @@ const Cell: React.FC<CellProps> = ({
   };
 
   const handleDrop = (e) => {
+    setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: "" });
+    if (!isValidPosition) return;
     const shipCoordinates = genShipCoordinates({
       length: grabbedShipInfo.length,
       startCoordinate: grabbedShipInfo.potentialStart,
       isVertical: grabbedShipInfo.isVertical,
     });
-    setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: "" });
     setPlacedShips([
       ...placedShips,
       { id: grabbedShipInfo.id, coordinates: shipCoordinates },

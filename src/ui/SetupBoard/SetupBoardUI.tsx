@@ -43,6 +43,7 @@ const SetupBoard = ({ setupBoard }) => {
   };
 
   const coordinates = genBoardCoordinates(setupBoard.size, setupBoard.size);
+
   const cellList = coordinates.map((coo) => {
     return (
       <Cell
