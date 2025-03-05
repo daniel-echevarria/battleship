@@ -25,13 +25,17 @@ const Ship: React.FC<ShipProps> = ({
   const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
     // e.dataTransfer.setData("shipClass", JSON.stringify(shipClass));
     // e.dataTransfer.effectAllowed = "move"; // Only allow moving
-    setTimeout(() => setIsDragged(true), 20);
+    setTimeout(() => setIsDragged(true), 5);
     setGrabbedShipInfo({
       ...grabbedShipInfo,
       length: shipClass.length,
       grabOffset: getGrabbedCellIndex(e),
       id: shipClass.id,
     });
+  };
+
+  const handleDragEnd = () => {
+    setIsDragged(false);
   };
 
   const getGrabbedCellIndex = (e) => {
@@ -59,6 +63,7 @@ const Ship: React.FC<ShipProps> = ({
     <div
       draggable
       onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
       className={`${isDragged ? "hidden" : ""} max-h-fit`}
     >
       {shipCells}
