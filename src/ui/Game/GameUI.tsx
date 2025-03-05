@@ -11,7 +11,7 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
   const mySetupBoard = mySetupBoardFactory(boardSize);
 
   return (
-    <main className="flex m-auto">
+    <main className="flex border border-red-400 items-center justify-center h-screen">
       <SetupBoard setupBoard={mySetupBoard} />
     </main>
   );

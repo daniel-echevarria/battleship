@@ -74,12 +74,10 @@ const SetupBoard = ({ setupBoard }) => {
   });
 
   return (
-    <>
-      {notPlacedShipsList}
-      <div role="grid" className="grid grid-cols-10">
-        {cellList}
-      </div>
-    </>
+    <div className="bg-yellow-300 flex gap-11">
+      <div className="flex gap-5 w-80">{notPlacedShipsList}</div>
+      <div className="grid grid-cols-10 ">{cellList}</div>
+    </div>
   );
 };
 

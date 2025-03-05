@@ -1,6 +1,7 @@
 import { ShipClass } from "@/types/shipTypes";
 import calculateGrabOffset from "@/utils/calculateGrabOffset";
 import React from "react";
+import { useState } from "react";
 
 interface ShipProps {
   shipClass: ShipClass;
@@ -19,9 +20,12 @@ const Ship: React.FC<ShipProps> = ({
   grabbedShipInfo,
   setGrabbedShipInfo,
 }) => {
+  const [isDragged, setIsDragged] = useState(false);
+
   const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
     // e.dataTransfer.setData("shipClass", JSON.stringify(shipClass));
     // e.dataTransfer.effectAllowed = "move"; // Only allow moving
+    setTimeout(() => setIsDragged(true), 20);
     setGrabbedShipInfo({
       ...grabbedShipInfo,
       length: shipClass.length,
@@ -52,7 +56,11 @@ const Ship: React.FC<ShipProps> = ({
   ));
 
   return (
-    <div draggable onDragStart={handleDragStart} className="max-h-fit">
+    <div
+      draggable
+      onDragStart={handleDragStart}
+      className={`${isDragged ? "hidden" : ""} max-h-fit`}
+    >
       {shipCells}
     </div>
   );
