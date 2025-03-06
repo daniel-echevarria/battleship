@@ -1,6 +1,7 @@
 import { calculateStartShip } from "@/utils/calculateStartShip";
 import React from "react";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
+import SetupBoard from "../SetupBoard/SetupBoardUI";
 
 interface CellProps {
   id: string;
@@ -17,6 +18,7 @@ const Cell: React.FC<CellProps> = ({
   placedShips,
   setPlacedShips,
   hasShip,
+  setupBoard,
 }) => {
   // const [cellColor, setCellColor] = React.useState("bg-blue-400");
 
@@ -47,6 +49,7 @@ const Cell: React.FC<CellProps> = ({
       startCoordinate: grabbedShipInfo.potentialStart,
       isVertical: grabbedShipInfo.isVertical,
     });
+    setupBoard.addShip(shipCoordinates);
     setPlacedShips([
       ...placedShips,
       { id: grabbedShipInfo.id, coordinates: shipCoordinates },

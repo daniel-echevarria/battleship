@@ -57,6 +57,7 @@ const SetupBoard = ({ setupBoard }) => {
         placedShips={placedShips}
         setPlacedShips={setPlacedShips}
         hasShip={getCellsWithShips().includes(coo)}
+        setupBoard={setupBoard}
       />
     );
   });
