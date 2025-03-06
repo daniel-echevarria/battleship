@@ -12,7 +12,7 @@ import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordin
 // Apply the hover effect to the cells
 // on drag leave, remove the hover effect from the cells
 
-const SetupBoard = ({ setupBoard }) => {
+const SetupBoardUI = ({ setupBoard }) => {
   const [placedShips, setPlacedShips] = React.useState([]);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
@@ -84,4 +84,4 @@ const SetupBoard = ({ setupBoard }) => {
   );
 };
 
-export default SetupBoard;
+export default SetupBoardUI;
