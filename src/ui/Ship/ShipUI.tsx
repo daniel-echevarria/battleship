@@ -36,6 +36,10 @@ const Ship: React.FC<ShipProps> = ({
 
   const handleDragEnd = () => {
     setIsDragged(false);
+    setGrabbedShipInfo({
+      ...grabbedShipInfo,
+      potentialStart: "",
+    });
   };
 
   const getGrabbedCellIndex = (e) => {

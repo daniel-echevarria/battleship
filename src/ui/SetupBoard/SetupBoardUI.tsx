@@ -23,6 +23,7 @@ const SetupBoard = ({ setupBoard }) => {
   });
 
   const getShipHoveredCells = () => {
+    if (grabbedShipInfo.potentialStart === "") return [];
     const shipCoordinates = genShipCoordinates({
       length: grabbedShipInfo.length,
       startCoordinate: grabbedShipInfo.potentialStart,
