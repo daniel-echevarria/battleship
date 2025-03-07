@@ -96,6 +96,7 @@ const playerFactory = () => {
       isHuman,
       randomlyPlaceShips,
       areAllShipsPlaced,
+      ships,
     };
   };
   return player;

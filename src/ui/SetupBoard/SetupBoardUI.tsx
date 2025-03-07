@@ -2,7 +2,6 @@ import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinat
 import React from "react";
 import Cell from "../Cell/CellUI";
 import Ship from "../Ship/ShipUI";
-import shipClasses from "@/data/shipClasses";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
 
@@ -12,7 +11,7 @@ import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordin
 // Apply the hover effect to the cells
 // on drag leave, remove the hover effect from the cells
 
-const SetupBoardUI = ({ setupBoard }) => {
+const SetupBoardUI = ({ setupBoard, ships }) => {
   const [placedShips, setPlacedShips] = React.useState([]);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
@@ -62,7 +61,7 @@ const SetupBoardUI = ({ setupBoard }) => {
     );
   });
 
-  const notPlacedShipsList = shipClasses.map((shipClass) => {
+  const notPlacedShipsList = ships.map((shipClass) => {
     const placedShipsIds = placedShips.map((ship) => ship.id);
     if (!placedShipsIds.includes(shipClass.id)) {
       return (
@@ -76,8 +75,11 @@ const SetupBoardUI = ({ setupBoard }) => {
     }
   });
 
+  const areAllShipsPlaced = ships.length === placedShips.length;
+
   return (
     <div className="bg-yellow-300 flex gap-11">
+      {areAllShipsPlaced && <button>Start Game</button>}
       <div className="flex gap-5 w-80">{notPlacedShipsList}</div>
       <div className="grid grid-cols-10 ">{cellList}</div>
     </div>

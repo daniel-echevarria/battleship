@@ -4,6 +4,7 @@ import SetupBoardUI from "../SetupBoard/SetupBoardUI";
 import playerFactory from "@/models/player/player";
 import playBoardFactory from "@/models/playBoard/playBoard";
 import shipClasses from "@/data/shipClasses";
+import { a } from "vitest/dist/chunks/suite.qtkXWc6R";
 
 interface GameProps {
   boardSize: number;
@@ -27,7 +28,7 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
 
   return (
     <main className="flex border border-red-400 items-center justify-center h-screen">
-      <SetupBoardUI setupBoard={playerOneSetupBoard} />
+      <SetupBoardUI setupBoard={playerOneSetupBoard} ships={playerOne.ships} />
     </main>
   );
 };
