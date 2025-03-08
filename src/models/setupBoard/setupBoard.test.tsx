@@ -29,7 +29,11 @@ describe("setupBoard", () => {
         } on ${coordinate}`, () => {
           const shipClass = { name: "Drakkar", length: shipLength };
           expect(
-            board.canShipGoThere({ shipClass, isVertical, coordinate })
+            board.canShipGoThere({
+              length: shipClass.length,
+              isVertical,
+              coordinate,
+            })
           ).toBe(expected);
         });
       });

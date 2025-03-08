@@ -1,7 +1,6 @@
 import { calculateStartShip } from "@/utils/calculateStartShip";
 import React from "react";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
-import SetupBoard from "../SetupBoard/SetupBoardUI";
 
 interface CellProps {
   id: string;
@@ -15,13 +14,11 @@ const Cell: React.FC<CellProps> = ({
   setGrabbedShipInfo,
   isHovered,
   isValidPosition,
-  placedShips,
-  setPlacedShips,
+  placedShipIds,
+  setPlacedShipIds,
   hasShip,
   setupBoard,
 }) => {
-  // const [cellColor, setCellColor] = React.useState("bg-blue-400");
-
   const handleDragEnter = (e) => {
     e.preventDefault(); // Necessary. Allows us to drop.
     const shipStart = calculateStartShip(
@@ -37,10 +34,6 @@ const Cell: React.FC<CellProps> = ({
     e.dataTransfer.dropEffect = "move"; // Show that the item will be moved
   };
 
-  const handleDragLeave = (e) => {
-    // setCellColor("bg-blue-400");
-  };
-
   const handleDrop = (e) => {
     setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: "" });
     if (!isValidPosition) return;
@@ -50,10 +43,7 @@ const Cell: React.FC<CellProps> = ({
       isVertical: grabbedShipInfo.isVertical,
     });
     setupBoard.addShip(shipCoordinates);
-    setPlacedShips([
-      ...placedShips,
-      { id: grabbedShipInfo.id, coordinates: shipCoordinates },
-    ]);
+    setPlacedShipIds([...placedShipIds, grabbedShipInfo.id]);
     e.preventDefault();
   };
 
@@ -76,7 +66,6 @@ const Cell: React.FC<CellProps> = ({
         } rounded-none border h-12 w-12 `}
         onDragEnter={(e) => handleDragEnter(e)}
         onDragOver={(e) => handleDragOver(e)}
-        // onDragLeave={(e) => handleDragLeave(e)}
         onDrop={(e) => handleDrop(e)}
         id={id}
       ></div>

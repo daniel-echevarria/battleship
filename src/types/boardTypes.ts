@@ -24,7 +24,7 @@ type PlayBoard = {
 };
 
 type CanShipGoThereArgs = {
-  shipClass: ShipClass;
+  length: number;
   isVertical: boolean;
   coordinate: string | undefined;
 };

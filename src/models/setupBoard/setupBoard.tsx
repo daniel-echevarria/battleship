@@ -24,14 +24,14 @@ const setupBoardFactory = () => {
     const canShipGoThere = ({
       length,
       isVertical,
-      startCoordinate,
+      coordinate,
     }: CanShipGoThereArgs) => {
-      if (!startCoordinate) return false;
+      if (!coordinate) return false;
 
       const shipCoordinates = genShipCoordinates({
         length,
         isVertical,
-        startCoordinate,
+        startCoordinate: coordinate,
       });
       return areAllCoordinatesAvailable(shipCoordinates);
     };

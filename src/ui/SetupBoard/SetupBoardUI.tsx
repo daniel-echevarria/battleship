@@ -5,14 +5,8 @@ import Ship from "../Ship/ShipUI";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
 
-// Algo for correctly show hovered cells:
-// On drag enter, calculate the potential starting coordinate of the ship
-// Calculate the hovered cells based on the length of the ship
-// Apply the hover effect to the cells
-// on drag leave, remove the hover effect from the cells
-
 const SetupBoardUI = ({ setupBoard, ships }) => {
-  const [placedShips, setPlacedShips] = React.useState([]);
+  const [placedShipIds, setPlacedShipIds] = React.useState([]);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
     grabOffset: null,
@@ -38,7 +32,9 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
   });
 
   const getCellsWithShips = () => {
-    const placedShipsCoordinates = placedShips.map((ship) => ship.coordinates);
+    const placedShipsCoordinates = setupBoard
+      .getShips()
+      .map((ship) => ship.getCoordinates());
     return placedShipsCoordinates.flat();
   };
 
@@ -53,8 +49,8 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
         grabbedShipInfo={grabbedShipInfo}
         isHovered={getShipHoveredCells().includes(coo)}
         isValidPosition={isValidPosition}
-        placedShips={placedShips}
-        setPlacedShips={setPlacedShips}
+        placedShipIds={placedShipIds}
+        setPlacedShipIds={setPlacedShipIds}
         hasShip={getCellsWithShips().includes(coo)}
         setupBoard={setupBoard}
       />
@@ -62,8 +58,7 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
   });
 
   const notPlacedShipsList = ships.map((shipClass) => {
-    const placedShipsIds = placedShips.map((ship) => ship.id);
-    if (!placedShipsIds.includes(shipClass.id)) {
+    if (!placedShipIds.includes(shipClass.id)) {
       return (
         <Ship
           key={shipClass.id}
@@ -75,14 +70,16 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
     }
   });
 
-  const areAllShipsPlaced = ships.length === placedShips.length;
+  const areAllShipsPlaced = ships.length === placedShipIds.length;
 
   return (
-    <div className="bg-yellow-300 flex gap-11">
-      {areAllShipsPlaced && <button>Start Game</button>}
-      <div className="flex gap-5 w-80">{notPlacedShipsList}</div>
+    <>
+      <div className="bg-yellow-300 flex gap-11">
+        {areAllShipsPlaced && <button>Start Game</button>}
+        <div className="flex gap-5 w-80">{notPlacedShipsList}</div>
+      </div>
       <div className="grid grid-cols-10 ">{cellList}</div>
-    </div>
+    </>
   );
 };
 
