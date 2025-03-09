@@ -1,5 +1,3 @@
-import { Ship } from "@/types/shipTypes";
-
 const shipFactory = () => {
   let id = 0;
 

@@ -4,6 +4,7 @@ import Cell from "../Cell/CellUI";
 import Ship from "../Ship/ShipUI";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
+import { CanShipGoThereArgs } from "@/types/boardTypes";
 
 const SetupBoardUI = ({ setupBoard, ships }) => {
   const [placedShipIds, setPlacedShipIds] = React.useState([]);
@@ -26,7 +27,7 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
   };
 
   const isValidPosition = setupBoard.canShipGoThere({
-    startCoordinate: grabbedShipInfo.potentialStart,
+    coordinate: grabbedShipInfo.potentialStart,
     length: grabbedShipInfo.length,
     isVertical: grabbedShipInfo.isVertical,
   });

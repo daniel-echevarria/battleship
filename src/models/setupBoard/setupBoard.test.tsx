@@ -27,10 +27,9 @@ describe("setupBoard", () => {
         it(`returns ${expected} when placing a ${shipLength}-length ship ${
           isVertical ? "vertically" : "horizontally"
         } on ${coordinate}`, () => {
-          const shipClass = { name: "Drakkar", length: shipLength };
           expect(
             board.canShipGoThere({
-              length: shipClass.length,
+              length: shipLength,
               isVertical,
               coordinate,
             })
