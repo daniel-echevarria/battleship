@@ -1,5 +1,5 @@
 import setupBoardFactory from "@/models/setupBoard/setupBoard";
-import React from "react";
+import React, { useState } from "react";
 import SetupBoardUI from "../SetupBoard/SetupBoardUI";
 import playerFactory from "@/models/player/player";
 import playBoardFactory from "@/models/playBoard/playBoard";
@@ -9,12 +9,15 @@ interface GameProps {
   boardSize: number;
 }
 
-const Game: React.FC<GameProps> = ({ boardSize }) => {
-  const mySetupBoardFactory = setupBoardFactory();
-  const myPlayBoardFactory = playBoardFactory();
-  const myPlayerFactory = playerFactory();
+const mySetupBoardFactory = setupBoardFactory();
+const myPlayBoardFactory = playBoardFactory();
+const myPlayerFactory = playerFactory();
 
-  const playerOneSetupBoard = mySetupBoardFactory(boardSize);
+const Game: React.FC<GameProps> = ({ boardSize }) => {
+  const [playerOneSetupBoard, setPlayerOneSetupBoard] = useState(
+    mySetupBoardFactory(boardSize)
+  );
+
   const playerOnePlayBoard = myPlayBoardFactory(playerOneSetupBoard);
 
   const playerOne = myPlayerFactory({
@@ -27,13 +30,14 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
 
   const handleRandomPlacement = () => {
     playerOne.randomlyPlaceShips();
+    setPlayerOneSetupBoard({ ...playerOneSetupBoard });
   };
 
   return (
     <main className="flex border border-red-400 items-center justify-center h-screen">
-      <SetupBoardUI setupBoard={playerOneSetupBoard} ships={playerOne.ships} />
+      <SetupBoardUI setupBoard={playerOneSetupBoard} player={playerOne} />
       <button onClick={handleRandomPlacement} className="bg-purple-300">
-        Random Placement
+        Random
       </button>
     </main>
   );

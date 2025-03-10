@@ -17,6 +17,7 @@ const Cell: React.FC<CellProps> = ({
   hasShip,
   setupBoard,
   ships,
+  setShips,
 }) => {
   const handleDragEnter = (e) => {
     e.preventDefault(); // Necessary. Allows us to drop.
@@ -35,13 +36,21 @@ const Cell: React.FC<CellProps> = ({
 
   const handleDrop = (e) => {
     if (!isValidPosition) return;
+    setGrabbedShipInfo({ ...grabbedShipInfo, potentialStart: "" });
     const shipCoordinates = genShipCoordinates({
       length: grabbedShipInfo.length,
       startCoordinate: grabbedShipInfo.potentialStart,
       isVertical: grabbedShipInfo.isVertical,
     });
-    const placedShip = ships.find((ship) => ship.id === grabbedShipInfo.id);
-    placedShip.isPlaced = true;
+
+    setShips(
+      ships.map((ship) => {
+        if (ship.id === grabbedShipInfo.id) {
+          return { ...ship, isPlaced: true };
+        }
+        return ship;
+      })
+    );
     setupBoard.addShip(shipCoordinates);
     e.preventDefault();
   };

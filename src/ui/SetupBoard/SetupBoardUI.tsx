@@ -1,16 +1,18 @@
 import genBoardCoordinates from "@/utils/coordinatesGeneration/genBoardCoordinates";
-import React from "react";
+import React, { useState } from "react";
 import Cell from "../Cell/CellUI";
 import Ship from "../Ship/ShipUI";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
+import { useEffect } from "react";
 
 // Algo to check for if ships are placed.
 // Given a list of shipClasses.
 // Display a ship for each that is not placed.
 // after placing a ship, change is placed to true
 
-const SetupBoardUI = ({ setupBoard, ships }) => {
+const SetupBoardUI = ({ setupBoard, player }) => {
+  const [ships, setShips] = useState(player.ships);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
     grabOffset: null,
@@ -56,6 +58,7 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
         hasShip={getCellsWithShips().includes(coo)}
         setupBoard={setupBoard}
         ships={ships}
+        setShips={setShips}
       />
     );
   });
