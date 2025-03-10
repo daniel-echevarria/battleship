@@ -4,10 +4,13 @@ import Cell from "../Cell/CellUI";
 import Ship from "../Ship/ShipUI";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
-import { CanShipGoThereArgs } from "@/types/boardTypes";
+
+// Algo to check for if ships are placed.
+// Given a list of shipClasses.
+// Display a ship for each that is not placed.
+// after placing a ship, change is placed to true
 
 const SetupBoardUI = ({ setupBoard, ships }) => {
-  const [placedShipIds, setPlacedShipIds] = React.useState([]);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
     grabOffset: null,
@@ -50,20 +53,19 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
         grabbedShipInfo={grabbedShipInfo}
         isHovered={getShipHoveredCells().includes(coo)}
         isValidPosition={isValidPosition}
-        placedShipIds={placedShipIds}
-        setPlacedShipIds={setPlacedShipIds}
         hasShip={getCellsWithShips().includes(coo)}
         setupBoard={setupBoard}
+        ships={ships}
       />
     );
   });
 
-  const notPlacedShipsList = ships.map((shipClass) => {
-    if (!placedShipIds.includes(shipClass.id)) {
+  const notPlacedShipsList = ships.map((ship) => {
+    if (!ship.isPlaced) {
       return (
         <Ship
-          key={shipClass.id}
-          shipClass={shipClass}
+          key={ship.id}
+          shipClass={ship}
           grabbedShipInfo={grabbedShipInfo}
           setGrabbedShipInfo={setGrabbedShipInfo}
         />
@@ -71,7 +73,7 @@ const SetupBoardUI = ({ setupBoard, ships }) => {
     }
   });
 
-  const areAllShipsPlaced = ships.length === placedShipIds.length;
+  const areAllShipsPlaced = ships.every((ship) => ship.isPlaced);
 
   return (
     <>
