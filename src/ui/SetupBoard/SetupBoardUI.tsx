@@ -5,6 +5,7 @@ import Ship from "../Ship/ShipUI";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
 import { useEffect } from "react";
+import shipClasses from "@/data/shipClasses";
 
 // Algo to check for if ships are placed.
 // Given a list of shipClasses.
@@ -13,8 +14,7 @@ import { useEffect } from "react";
 
 const SetupBoardUI = ({ player }) => {
   const [setupBoard, setSetupBoard] = useState(player.setupBoard);
-
-  const [ships, setShips] = useState(player.ships);
+  const [ships, setShips] = useState(shipClasses);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
     grabOffset: null,
@@ -81,10 +81,8 @@ const SetupBoardUI = ({ player }) => {
   const areAllShipsPlaced = ships.every((ship) => ship.isPlaced);
 
   const handleRandomPlacement = () => {
-    const areAllPlaced = player.ships.every((s) => s.isPlaced);
-    console.log(areAllPlaced);
-    if (areAllPlaced) return;
-    player.randomlyPlaceShips();
+    const notPlacedShips = ships.filter((ship) => !ship.isPlaced);
+    player.randomlyPlaceShips(notPlacedShips);
     setSetupBoard({ ...player.setupBoard });
   };
 

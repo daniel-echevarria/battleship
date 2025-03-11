@@ -6,16 +6,9 @@ import { ShipClass } from "@/types/shipTypes";
 
 const playerFactory = () => {
   let id = 0;
-  const player = ({
-    setupBoard,
-    playBoard,
-    name,
-    shipClasses,
-    isHuman,
-  }: PlayerArgs) => {
+  const player = ({ setupBoard, playBoard, name, isHuman }: PlayerArgs) => {
     const playerId = ++id;
     const playerName = name;
-    const ships = shipClasses.map((ship: ShipClass) => ({ ...ship }));
     const hasWon = () => {
       return playBoard.areAllShipsDestroyed();
     };
@@ -59,7 +52,6 @@ const playerFactory = () => {
     };
 
     const randomlyPlaceShip = (shipClass: ShipClass) => {
-      console.log(shipClass.isPlaced);
       if (shipClass.isPlaced) return;
       let keepGoing = true;
       let i = 0;
@@ -80,16 +72,12 @@ const playerFactory = () => {
       }
     };
 
-    const randomlyPlaceShips = () => {
+    const randomlyPlaceShips = (ships) => {
       ships.forEach((s) => randomlyPlaceShip(s));
     };
 
     const toggleShipClassPlacement = (shipClass: ShipClass) => {
       shipClass.isPlaced = shipClass.isPlaced ? false : true;
-    };
-
-    const areAllShipsPlaced = () => {
-      return ships.every((s) => s.isPlaced);
     };
 
     return {
@@ -99,8 +87,6 @@ const playerFactory = () => {
       placeShip,
       isHuman,
       randomlyPlaceShips,
-      areAllShipsPlaced,
-      ships,
       setupBoard,
     };
   };
