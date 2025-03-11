@@ -14,10 +14,7 @@ const myPlayBoardFactory = playBoardFactory();
 const myPlayerFactory = playerFactory();
 
 const Game: React.FC<GameProps> = ({ boardSize }) => {
-  const [playerOneSetupBoard, setPlayerOneSetupBoard] = useState(
-    mySetupBoardFactory(boardSize)
-  );
-
+  const playerOneSetupBoard = mySetupBoardFactory(boardSize);
   const playerOnePlayBoard = myPlayBoardFactory(playerOneSetupBoard);
 
   const playerOne = myPlayerFactory({
@@ -28,17 +25,9 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
     shipClasses: shipClasses,
   });
 
-  const handleRandomPlacement = () => {
-    playerOne.randomlyPlaceShips();
-    setPlayerOneSetupBoard({ ...playerOneSetupBoard });
-  };
-
   return (
     <main className="flex border border-red-400 items-center justify-center h-screen">
-      <SetupBoardUI setupBoard={playerOneSetupBoard} player={playerOne} />
-      <button onClick={handleRandomPlacement} className="bg-purple-300">
-        Random
-      </button>
+      <SetupBoardUI player={playerOne} />
     </main>
   );
 };

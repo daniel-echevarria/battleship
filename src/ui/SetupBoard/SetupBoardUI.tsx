@@ -11,7 +11,9 @@ import { useEffect } from "react";
 // Display a ship for each that is not placed.
 // after placing a ship, change is placed to true
 
-const SetupBoardUI = ({ setupBoard, player }) => {
+const SetupBoardUI = ({ player }) => {
+  const [setupBoard, setSetupBoard] = useState(player.setupBoard);
+
   const [ships, setShips] = useState(player.ships);
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
@@ -78,6 +80,14 @@ const SetupBoardUI = ({ setupBoard, player }) => {
 
   const areAllShipsPlaced = ships.every((ship) => ship.isPlaced);
 
+  const handleRandomPlacement = () => {
+    const areAllPlaced = player.ships.every((s) => s.isPlaced);
+    console.log(areAllPlaced);
+    if (areAllPlaced) return;
+    player.randomlyPlaceShips();
+    setSetupBoard({ ...player.setupBoard });
+  };
+
   return (
     <>
       <div className="bg-yellow-300 flex gap-11">
@@ -85,6 +95,9 @@ const SetupBoardUI = ({ setupBoard, player }) => {
         <div className="flex gap-5 w-80">{notPlacedShipsList}</div>
       </div>
       <div className="grid grid-cols-10 ">{cellList}</div>
+      <button onClick={handleRandomPlacement} className="bg-purple-300">
+        Random
+      </button>
     </>
   );
 };

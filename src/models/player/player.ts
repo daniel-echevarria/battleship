@@ -25,7 +25,6 @@ const playerFactory = () => {
       isVertical: boolean,
       coordinate: string
     ) => {
-      console.log();
       if (!setupBoard.canShipGoThere({ length, isVertical, coordinate }))
         return;
 
@@ -60,12 +59,13 @@ const playerFactory = () => {
     };
 
     const randomlyPlaceShip = (shipClass: ShipClass) => {
+      console.log(shipClass.isPlaced);
+      if (shipClass.isPlaced) return;
       let keepGoing = true;
       let i = 0;
       while (keepGoing) {
         const isVertical = Math.random() < 0.5;
         const coordinate = selectRandomCoordinate(setupBoard.freeCoordinates);
-        console.log(isVertical, coordinate);
         const validCoors = genValidCoordinates(
           shipClass.length,
           isVertical,
@@ -101,6 +101,7 @@ const playerFactory = () => {
       randomlyPlaceShips,
       areAllShipsPlaced,
       ships,
+      setupBoard,
     };
   };
   return player;
