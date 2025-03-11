@@ -4,17 +4,11 @@ import Cell from "../Cell/CellUI";
 import Ship from "../Ship/ShipUI";
 import genShipCoordinates from "@/utils/coordinatesGeneration/genShipCoordinates";
 import genNearbyCoordinates from "@/utils/coordinatesGeneration/genNearbyCoordinates";
-import { useEffect } from "react";
 import shipClasses from "@/data/shipClasses";
-
-// Algo to check for if ships are placed.
-// Given a list of shipClasses.
-// Display a ship for each that is not placed.
-// after placing a ship, change is placed to true
 
 const SetupBoardUI = ({ player }) => {
   const [setupBoard, setSetupBoard] = useState(player.setupBoard);
-  const [ships, setShips] = useState(shipClasses);
+  const [ships, setShips] = useState(structuredClone(shipClasses));
   const [grabbedShipInfo, setGrabbedShipInfo] = React.useState({
     potentialStart: "",
     grabOffset: null,
@@ -81,6 +75,10 @@ const SetupBoardUI = ({ player }) => {
   const areAllShipsPlaced = ships.every((ship) => ship.isPlaced);
 
   const handleRandomPlacement = () => {
+    if (areAllShipsPlaced) {
+      setShips(structuredClone(shipClasses));
+      setupBoard.removeShips();
+    }
     const notPlacedShips = ships.filter((ship) => !ship.isPlaced);
     player.randomlyPlaceShips(notPlacedShips);
     setSetupBoard({ ...player.setupBoard });

@@ -53,7 +53,10 @@ const setupBoardFactory = () => {
 
     const getShips = () => ships;
     const getBoardMatrix = () => boardMatrix;
-
+    const removeShips = () => {
+      ships.length = 0;
+      freeCoordinates = genBoardCoordinates(size, size);
+    };
     return {
       getBoardMatrix,
       addShip,
@@ -63,6 +66,7 @@ const setupBoardFactory = () => {
       freeCoordinates,
       areAllCoordinatesAvailable,
       canShipGoThere,
+      removeShips,
     };
   };
 
