@@ -86,7 +86,7 @@ const SetupBoardUI = ({ player }) => {
 
   return (
     <>
-      <div className="bg-yellow-300 flex gap-11">
+      <div className="bg-yellow-300 flex ">
         {areAllShipsPlaced && <button>Start Game</button>}
         <div className="flex gap-5 w-80">{notPlacedShipsList}</div>
       </div>
