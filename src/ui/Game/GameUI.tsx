@@ -26,7 +26,7 @@ const Game: React.FC<GameProps> = ({ boardSize }) => {
   });
 
   return (
-    <main className="flex border border-red-400 items-center justify-center h-screen">
+    <main className="flex border border-red-400 items-center justify-center h-screen bg-yellow-900">
       <SetupBoardUI player={playerOne} />
     </main>
   );
